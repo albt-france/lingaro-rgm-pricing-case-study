@@ -1,0 +1,69 @@
+/// Product hierarchy: category > manufacturer (brand) > product > pack size
+table Product
+
+	column upc
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: upc
+
+	column product_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: product_name
+
+	column description
+		dataType: string
+		summarizeBy: none
+		sourceColumn: description
+
+	column manufacturer
+		dataType: string
+		summarizeBy: none
+		sourceColumn: manufacturer
+
+	column category
+		dataType: string
+		summarizeBy: none
+		sourceColumn: category
+
+	column sub_category
+		dataType: string
+		summarizeBy: none
+		sourceColumn: sub_category
+
+	column size
+		dataType: string
+		summarizeBy: none
+		sourceColumn: size
+
+	column size_oz
+		dataType: double
+		formatString: #,0.00
+		summarizeBy: none
+		sourceColumn: size_oz
+
+	column brand_key
+		dataType: string
+		summarizeBy: none
+		sourceColumn: brand_key
+
+	column is_private_label
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: is_private_label
+
+	column phase_out
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: phase_out
+
+	partition Product = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "clean\products.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Kept = Table.SelectColumns(Promoted, {"upc", "product_name", "description", "manufacturer", "category", "sub_category", "size", "size_oz", "brand_key", "is_private_label", "phase_out"}, MissingField.UseNull),
+			    Typed = Table.TransformColumnTypes(Kept, {{"upc", Int64.Type}, {"product_name", type text}, {"description", type text}, {"manufacturer", type text}, {"category", type text}, {"sub_category", type text}, {"size", type text}, {"size_oz", type number}, {"brand_key", type text}, {"is_private_label", type logical}, {"phase_out", Int64.Type}}, "en-US")
+			in
+			    Typed

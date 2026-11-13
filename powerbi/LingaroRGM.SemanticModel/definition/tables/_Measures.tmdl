@@ -1,0 +1,176 @@
+/// All DAX measures, grouped in display folders
+table _Measures
+
+	measure Revenue = SUM ( Sales[spend] )
+		formatString: $#,0
+		displayFolder: 1 Sales
+
+	measure Units = SUM ( Sales[units] )
+		formatString: #,0
+		displayFolder: 1 Sales
+
+	measure 'Avg Price' = DIVIDE ( [Revenue], [Units] )
+		formatString: $#,0.00
+		displayFolder: 1 Sales
+
+	measure 'Avg Base Price' = DIVIDE ( SUMX ( Sales, Sales[base_price] * Sales[units] ), [Units] )
+		formatString: $#,0.00
+		displayFolder: 1 Sales
+
+	measure 'Avg Base Price per Oz' = DIVIDE ( SUMX ( Sales, Sales[base_price] * Sales[units] ), SUMX ( Sales, RELATED ( Product[size_oz] ) * Sales[units] ) )
+		formatString: $0.000
+		displayFolder: 1 Sales
+
+	measure 'Promo Revenue Share' = DIVIDE ( CALCULATE ( [Revenue], Sales[is_promo] = 1 ), [Revenue] )
+		formatString: 0.0%
+		displayFolder: 1 Sales
+
+	measure 'Avg Discount Depth' = CALCULATE ( AVERAGE ( Sales[discount_pct] ), Sales[is_promo] = 1, Sales[discount_pct] > 0 )
+		formatString: 0.0%
+		displayFolder: 1 Sales
+
+	measure 'Revenue L52W' = VAR LastWeek = CALCULATE ( MAX ( Sales[week_end_date] ), REMOVEFILTERS () ) RETURN CALCULATE ( [Revenue], 'Date'[Week End Date] > LastWeek - 364 )
+		formatString: $#,0
+		displayFolder: 1 Sales
+
+	measure 'Revenue P52W' = VAR LastWeek = CALCULATE ( MAX ( Sales[week_end_date] ), REMOVEFILTERS () ) RETURN CALCULATE ( [Revenue], 'Date'[Week End Date] > LastWeek - 728, 'Date'[Week End Date] <= LastWeek - 364 )
+		formatString: $#,0
+		displayFolder: 1 Sales
+
+	measure 'Revenue YoY %' = DIVIDE ( [Revenue L52W], [Revenue P52W] ) - 1
+		formatString: 0.0%
+		displayFolder: 1 Sales
+
+	measure 'Promo Weeks' = CALCULATE ( COUNTROWS ( Sales ), Sales[is_promo] = 1, Sales[baseline_n_weeks] >= 4, Sales[dq_ok] = 1, Sales[baseline_units] > 0 )
+		formatString: #,0
+		displayFolder: 2 Promotions
+
+	measure 'Promo Units' = CALCULATE ( SUM ( Sales[units] ), Sales[is_promo] = 1, Sales[baseline_n_weeks] >= 4, Sales[dq_ok] = 1, Sales[baseline_units] > 0 )
+		formatString: #,0
+		displayFolder: 2 Promotions
+
+	measure 'Promo Baseline Units' = CALCULATE ( SUM ( Sales[baseline_units] ), Sales[is_promo] = 1, Sales[baseline_n_weeks] >= 4, Sales[dq_ok] = 1, Sales[baseline_units] > 0 )
+		formatString: #,0
+		displayFolder: 2 Promotions
+
+	measure 'Incremental Units' = [Promo Units] - [Promo Baseline Units]
+		formatString: #,0
+		displayFolder: 2 Promotions
+
+	measure 'Promo Uplift %' = DIVIDE ( [Promo Units], [Promo Baseline Units] ) - 1
+		formatString: 0.0%
+		displayFolder: 2 Promotions
+
+	measure 'Discount Cost' = CALCULATE ( SUMX ( Sales, MAX ( Sales[base_price] - Sales[price], 0 ) * Sales[units] ), Sales[is_promo] = 1, Sales[baseline_n_weeks] >= 4, Sales[dq_ok] = 1, Sales[baseline_units] > 0 )
+		formatString: $#,0
+		displayFolder: 2 Promotions
+
+	measure 'Net Incremental Profit' = VAR m = [Margin Value] RETURN CALCULATE ( SUMX ( Sales, Sales[units] * ( Sales[price] - Sales[base_price] * ( 1 - m ) ) - Sales[baseline_units] * Sales[base_price] * m ), Sales[is_promo] = 1, Sales[baseline_n_weeks] >= 4, Sales[dq_ok] = 1, Sales[baseline_units] > 0 )
+		formatString: $#,0
+		displayFolder: 2 Promotions
+
+	measure 'Promo ROI' = DIVIDE ( [Net Incremental Profit], [Discount Cost] )
+		formatString: 0.0%
+		displayFolder: 2 Promotions
+
+	measure 'Post-Promo Dip %' = DIVIDE ( CALCULATE ( SUM ( Sales[units] ), Sales[is_post_promo_week] = 1, Sales[baseline_n_weeks] >= 4, Sales[baseline_units] > 0 ), CALCULATE ( SUM ( Sales[baseline_units] ), Sales[is_post_promo_week] = 1, Sales[baseline_n_weeks] >= 4, Sales[baseline_units] > 0 ) ) - 1
+		formatString: 0.0%
+		displayFolder: 2 Promotions
+
+	measure 'Published Elasticities' = CALCULATE ( COUNTROWS ( Elasticity ), Elasticity[status] = "Published", Elasticity[level] IN { "Category", "Brand", "Product" } )
+		formatString: #,0
+		displayFolder: 3 Elasticity
+
+	measure 'Avg Elasticity' = AVERAGE ( Elasticity[elasticity] )
+		formatString: 0.00
+		displayFolder: 3 Elasticity
+
+	measure Segments = COUNTROWS ( Elasticity )
+		formatString: #,0
+		displayFolder: 3 Elasticity
+
+	measure 'Price Change Value' = SELECTEDVALUE ( 'Price Change'[Price Change], 0.05 )
+		formatString: +0%;-0%;0%
+		displayFolder: 4 Simulator
+
+	measure 'Margin Value' = SELECTEDVALUE ( 'Margin Assumption'[Margin], 0.3 )
+		formatString: 0%
+		displayFolder: 4 Simulator
+
+	measure 'Sim Elasticity' = IF ( HASONEVALUE ( Elasticity[segment_id] ) && SELECTEDVALUE ( Elasticity[status] ) = "Published", SELECTEDVALUE ( Elasticity[elasticity] ) )
+		formatString: 0.00
+		displayFolder: 4 Simulator
+
+	measure 'Sim Volume %' = VAR e = [Sim Elasticity] RETURN IF ( NOT ISBLANK ( e ), POWER ( 1 + [Price Change Value], e ) - 1 )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 4 Simulator
+
+	measure 'Sim Volume % Low' = VAR p = [Price Change Value] RETURN IF ( NOT ISBLANK ( [Sim Elasticity] ), MIN ( POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_low] ) ), POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_high] ) ) ) - 1 )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 4 Simulator
+
+	measure 'Sim Volume % High' = VAR p = [Price Change Value] RETURN IF ( NOT ISBLANK ( [Sim Elasticity] ), MAX ( POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_low] ) ), POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_high] ) ) ) - 1 )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 4 Simulator
+
+	measure 'Sim Revenue %' = VAR e = [Sim Elasticity] RETURN IF ( NOT ISBLANK ( e ), POWER ( 1 + [Price Change Value], 1 + e ) - 1 )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 4 Simulator
+
+	measure 'Sim Gross Profit %' = VAR e = [Sim Elasticity] VAR p = [Price Change Value] VAR m = [Margin Value] RETURN IF ( NOT ISBLANK ( e ), POWER ( 1 + p, e ) * ( m + p ) / m - 1 )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 4 Simulator
+
+	measure 'Sim Gross Profit % Low' = VAR p = [Price Change Value] VAR m = [Margin Value] RETURN IF ( NOT ISBLANK ( [Sim Elasticity] ), MIN ( POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_low] ) ), POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_high] ) ) ) * ( m + p ) / m - 1 )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 4 Simulator
+
+	measure 'Sim Gross Profit % High' = VAR p = [Price Change Value] VAR m = [Margin Value] RETURN IF ( NOT ISBLANK ( [Sim Elasticity] ), MAX ( POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_low] ) ), POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_high] ) ) ) * ( m + p ) / m - 1 )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 4 Simulator
+
+	measure 'Sim Revenue Change' = [Sim Revenue %] * SELECTEDVALUE ( Elasticity[base_revenue_52w] )
+		formatString: +$#,0;-$#,0;$0
+		displayFolder: 4 Simulator
+
+	measure 'Sim Gross Profit Change' = [Sim Gross Profit %] * SELECTEDVALUE ( Elasticity[base_revenue_52w] ) * [Margin Value]
+		formatString: +$#,0;-$#,0;$0
+		displayFolder: 4 Simulator
+
+	measure 'Sim Status' = IF ( ISBLANK ( [Sim Elasticity] ), "Select ONE segment with a published elasticity (BR-06)", "Published elasticity " & FORMAT ( [Sim Elasticity], "0.00" ) & " (95% CI " & FORMAT ( SELECTEDVALUE ( Elasticity[ci_low] ), "0.00" ) & " to " & FORMAT ( SELECTEDVALUE ( Elasticity[ci_high] ), "0.00" ) & "), price change capped at +/-10% (BR-10)" )
+		displayFolder: 4 Simulator
+
+	measure 'Market Value Share (SIM)' = DIVIDE ( SUM ( 'Market Sim'[market_value] ), CALCULATE ( SUM ( 'Market Sim'[market_value] ), REMOVEFILTERS ( Brand[manufacturer], Brand[brand_key], 'Market Sim'[manufacturer], 'Market Sim'[brand_key] ) ) )
+		formatString: 0.0%
+		displayFolder: 5 Market (SIMULATED)
+
+	measure 'Retailer Value Share' = DIVIDE ( SUM ( 'Market Sim'[retailer_revenue] ), CALCULATE ( SUM ( 'Market Sim'[retailer_revenue] ), REMOVEFILTERS ( Brand[manufacturer], Brand[brand_key], 'Market Sim'[manufacturer], 'Market Sim'[brand_key] ) ) )
+		formatString: 0.0%
+		displayFolder: 5 Market (SIMULATED)
+
+	measure 'Price Index vs Competitors (SIM)' = AVERAGE ( 'Market Sim'[price_index_vs_competitors] )
+		formatString: 0.0
+		displayFolder: 5 Market (SIMULATED)
+
+	measure 'Weighted Distribution (SIM)' = AVERAGE ( 'Market Sim'[weighted_distribution] )
+		formatString: 0.0%
+		displayFolder: 5 Market (SIMULATED)
+
+	measure 'Rows Passing Checks %' = DIVIDE ( CALCULATE ( COUNTROWS ( Sales ), Sales[dq_ok] = 1 ), COUNTROWS ( Sales ) )
+		formatString: 0.00%
+		displayFolder: 6 Data quality
+
+	measure 'Flagged Rows' = CALCULATE ( COUNTROWS ( Sales ), Sales[dq_ok] = 0 )
+		formatString: #,0
+		displayFolder: 6 Data quality
+
+	column '_'
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: _
+
+	partition _Measures = m
+		mode: import
+		source =
+			#table(type table [_ = text], {})

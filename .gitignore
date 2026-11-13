@@ -1,0 +1,24 @@
+# local only
+.venv/
+.env
+DECISIONS.md
+NOTES*.md
+HANDOFF*.md
+__pycache__/
+.ipynb_checkpoints/
+*.duckdb
+*.duckdb.wal
+
+# raw data: licence does not allow redistribution / third-party content
+data/raw/retail/*
+!data/raw/retail/README.md
+data/raw/lingaro_site/*
+!data/raw/lingaro_site/README.md
+data/clean/*
+!data/clean/README.md
+
+# Power BI local caches and heavy files
+powerbi/**/.pbi/localSettings.json
+powerbi/**/.pbi/cache.abf
+powerbi/**/cache.abf
+*.pbix

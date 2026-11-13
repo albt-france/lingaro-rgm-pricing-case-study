@@ -1,0 +1,35 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["TMDLView_Desktop","DevMode"]
+
+annotation PBI_QueryOrder = ["Sales", "Product", "Store", "Elasticity", "Elasticity Split", "Cross Elasticity", "Promo Effectiveness", "Promo Summary", "Promo Dip", "Cannibalisation", "PPA", "Scenario Grid", "Pricing Stance", "Market Sim", "Data Quality", "Date", "Brand", "Promo Type", "Price Change", "Margin Assumption", "_Measures", "DataFolder"]
+
+ref table Sales
+ref table Product
+ref table Store
+ref table Elasticity
+ref table 'Elasticity Split'
+ref table 'Cross Elasticity'
+ref table 'Promo Effectiveness'
+ref table 'Promo Summary'
+ref table 'Promo Dip'
+ref table Cannibalisation
+ref table PPA
+ref table 'Scenario Grid'
+ref table 'Pricing Stance'
+ref table 'Market Sim'
+ref table 'Data Quality'
+ref table Date
+ref table Brand
+ref table 'Promo Type'
+ref table 'Price Change'
+ref table 'Margin Assumption'
+ref table _Measures

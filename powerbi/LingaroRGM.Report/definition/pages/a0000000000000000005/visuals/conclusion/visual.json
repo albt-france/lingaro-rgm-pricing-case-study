@@ -1,0 +1,64 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "conclusion",
+  "position": {
+    "x": 32,
+    "y": 76,
+    "z": 3000,
+    "height": 64,
+    "width": 1856,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Pick one segment with a published elasticity, a price change (capped at +/-10%, BR-10) and a margin assumption. Ranges come from the 95% interval of the elasticity. Volume = (1+p)^e; revenue = (1+p)^(1+e); profit = (1+p)^e x (m+p)/m.",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "color": "#52514E"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

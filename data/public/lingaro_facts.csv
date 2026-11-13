@@ -1,0 +1,25 @@
+fact_id,topic,fact,value,source_url,retrieved
+F01,Company,Positions itself as a global end-to-end data and AI partner to leading brands and enterprises,,https://lingarogroup.com/home,2026-11-12
+F02,Company,Employees worldwide,"1,800+",https://lingarogroup.com/home,2026-11-12
+F03,Company,On the market since,2008,https://lingarogroup.com/careers/rgm-data-analyst,2026-11-12
+F04,Company,Global sites,7,https://lingarogroup.com/careers/rgm-data-analyst,2026-11-12
+F05,Company,Office locations listed on the website,"Warsaw, Lublin (PL); Geneva, Zurich (CH); Cincinnati (US); Mexico City (MX); Manila (PH); Bangalore (IN)",https://lingarogroup.com/home,2026-11-12
+F06,Offer,Domain services include Marketing & Commercial Analytics (incl. RGM); Intelligent & Resilient Supply Chain; Sustainability & Compliance; AI & GenAI; Data Consulting,,https://lingarogroup.com/home,2026-11-12
+F07,Offer,Case-study families shown on the About page,"Commercial Analytics; Supply Chain Analytics; Sustainability & Compliance; Data and Technology Foundations; AI & Gen AI",https://lingarogroup.com/about,2026-11-12
+F08,RGM,Revenue growth management is listed as a Marketing & Commercial Analytics capability,,https://lingarogroup.com/services/marketing-commercial-analytics,2026-11-12
+F09,RGM,"RGM capabilities named: price management, promo management, assortment optimization, trade spend and profitability analysis, price elasticity analytics, what-if scenarios, promo effectiveness, profit optimization",,https://lingarogroup.com/insights/how-price-reductions-affect-retail-profitability,2026-11-12
+F10,RGM case study,"Price elasticity tool for a global beverage company: elasticity estimates with recommended strategies + what-if simulation on volume, gross/net sales value and gross profit",,https://lingarogroup.com/insights/cpg-case-study-ai-enhanced-price-elasticity-strategy-for-revenue-growth-management,2026-11-12
+F11,RGM case study,Markets where the price elasticity tool is the go-to source for pricing strategies (built to scale to other markets),4,https://lingarogroup.com/insights/cpg-case-study-ai-enhanced-price-elasticity-strategy-for-revenue-growth-management,2026-11-12
+F12,RGM case study,"Data limitations (not enough data, not enough granularity) must be known beforehand, addressed with workarounds and explained to business users",,https://lingarogroup.com/insights/cpg-case-study-ai-enhanced-price-elasticity-strategy-for-revenue-growth-management,2026-11-12
+F13,Promotions,"Promotion uplift can mix true incremental demand with stock-up, pull-forward, loyal-buyer spend, cannibalization and seasonality",,https://lingarogroup.com/insights/your-promotions-show-uplift.-but-are-they-creating-demand,2026-11-12
+F14,Promotions,Trade spend as a share of gross sales (as cited by Lingaro),20% to 30%,https://lingarogroup.com/insights/your-promotions-show-uplift.-but-are-they-creating-demand,2026-11-12
+F15,Promotions,"Expected outcome of better RGM decisions (as cited by Lingaro): up to 5% margin uplift, up to 10% lower value leakage",,https://lingarogroup.com/insights/your-promotions-show-uplift.-but-are-they-creating-demand,2026-11-12
+F16,Promotions,An effective promotion creates incremental profit and not just higher sales,,https://lingarogroup.com/insights/how-price-reductions-affect-retail-profitability,2026-11-12
+F17,Recognition,Named a Leader in ISG Provider Lens Specialty Analytics Services - Retail and CPG (2025),,https://lingarogroup.com/insights/lingaro-positioned-as-a-leader-in-cpg-analytics-by-isg,2026-11-12
+F18,Recognition,Share of Fortune 200 CPG companies Lingaro has partnered with (company statement),75%,https://lingarogroup.com/insights/lingaro-positioned-as-a-leader-in-cpg-analytics-by-isg,2026-11-12
+F19,Recognition,Highest in value delivered among Major Contenders in Everest Group's 2024 Retail and CPG Data Analytics and AI Services PEAK Matrix,,https://lingarogroup.com/insights/lingaro-leads-major-contenders-in-value-delivered-in-retail-and-cpg-data-analytics-and-ai-services-peak-matrix-assessment,2026-11-12
+F20,Case study,"Brand Guardian: 30x faster reactivity, 1,400 assets reviewed per audit, 20%+ compliance increase in first 6 months",,https://lingarogroup.com/about,2026-11-12
+F21,Employer,Great Place to Work certified; Fortune 100 Best Companies to Work For in Europe 2024,,https://lingarogroup.com/home,2026-11-12
+F22,Employer,"Office as an option, workation, 500+ technology certificates per year, 76% of managers are internal promotions",,https://lingarogroup.com/careers/rgm-data-analyst,2026-11-12
+F23,Role,"RGM Data Analyst joins the D&A EU SRM product team, building data-driven solutions for a revenue management EU organization; key focus pricing analytics and price elasticity",,https://lingarogroup.com/careers/rgm-data-analyst,2026-11-12
+F24,Role,"Translate business and analytical requirements into user stories, acceptance criteria and documented business rules; standardize methods across markets",,https://lingarogroup.com/careers/rgm-data-analyst,2026-11-12

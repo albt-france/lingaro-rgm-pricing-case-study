@@ -1,0 +1,20 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "a0000000000000000005",
+  "displayName": "4 · Scenario simulator",
+  "displayOption": "FitToPage",
+  "height": 1080,
+  "width": 1920,
+  "visualInteractions": [
+    {
+      "source": "slicerPrice",
+      "target": "curve",
+      "type": "NoFilter"
+    },
+    {
+      "source": "slicerMargin",
+      "target": "curve",
+      "type": "NoFilter"
+    }
+  ]
+}

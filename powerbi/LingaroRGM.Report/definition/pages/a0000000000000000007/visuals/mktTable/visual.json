@@ -1,0 +1,303 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "mktTable",
+  "position": {
+    "x": 32,
+    "y": 600,
+    "z": 6000,
+    "height": 428,
+    "width": 1856,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Elasticity"
+                    }
+                  },
+                  "Property": "market"
+                }
+              },
+              "queryRef": "Elasticity.market",
+              "nativeQueryRef": "market",
+              "displayName": "Market"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Elasticity"
+                    }
+                  },
+                  "Property": "category"
+                }
+              },
+              "queryRef": "Elasticity.category",
+              "nativeQueryRef": "category",
+              "displayName": "Category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Elasticity"
+                    }
+                  },
+                  "Property": "n_obs"
+                }
+              },
+              "queryRef": "Elasticity.n_obs",
+              "nativeQueryRef": "n_obs",
+              "displayName": "Rows"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Elasticity"
+                    }
+                  },
+                  "Property": "n_stores"
+                }
+              },
+              "queryRef": "Elasticity.n_stores",
+              "nativeQueryRef": "n_stores",
+              "displayName": "Stores"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Elasticity"
+                    }
+                  },
+                  "Property": "elasticity"
+                }
+              },
+              "queryRef": "Elasticity.elasticity",
+              "nativeQueryRef": "elasticity",
+              "displayName": "Elasticity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Elasticity"
+                    }
+                  },
+                  "Property": "ci_low"
+                }
+              },
+              "queryRef": "Elasticity.ci_low",
+              "nativeQueryRef": "ci_low",
+              "displayName": "CI low"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Elasticity"
+                    }
+                  },
+                  "Property": "ci_high"
+                }
+              },
+              "queryRef": "Elasticity.ci_high",
+              "nativeQueryRef": "ci_high",
+              "displayName": "CI high"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Elasticity"
+                    }
+                  },
+                  "Property": "status"
+                }
+              },
+              "queryRef": "Elasticity.status",
+              "nativeQueryRef": "status",
+              "displayName": "Status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Elasticity"
+                    }
+                  },
+                  "Property": "status_reason"
+                }
+              },
+              "queryRef": "Elasticity.status_reason",
+              "nativeQueryRef": "status_reason",
+              "displayName": "Reason"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#52514E'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Market x category estimates and publication status'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "visualFilter0",
+        "type": "Categorical",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Elasticity"
+              }
+            },
+            "Property": "level"
+          }
+        },
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "Elasticity",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "t"
+                          }
+                        },
+                        "Property": "level"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Market'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

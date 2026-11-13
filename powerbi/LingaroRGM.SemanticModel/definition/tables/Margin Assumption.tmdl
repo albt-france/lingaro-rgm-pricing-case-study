@@ -1,0 +1,12 @@
+table 'Margin Assumption'
+
+	column Margin
+		dataType: double
+		formatString: 0%
+		summarizeBy: none
+		sourceColumn: Margin
+
+	partition 'Margin Assumption' = m
+		mode: import
+		source =
+			#table(type table [Margin = number], List.Transform({4..9}, each {_ * 5 / 100}))

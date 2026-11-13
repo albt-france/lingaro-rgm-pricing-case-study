@@ -1,0 +1,261 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ppaTable",
+  "position": {
+    "x": 32,
+    "y": 676,
+    "z": 7000,
+    "height": 352,
+    "width": 1856,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PPA"
+                    }
+                  },
+                  "Property": "category"
+                }
+              },
+              "queryRef": "PPA.category",
+              "nativeQueryRef": "category",
+              "displayName": "Category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PPA"
+                    }
+                  },
+                  "Property": "manufacturer"
+                }
+              },
+              "queryRef": "PPA.manufacturer",
+              "nativeQueryRef": "manufacturer",
+              "displayName": "Brand"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PPA"
+                    }
+                  },
+                  "Property": "description"
+                }
+              },
+              "queryRef": "PPA.description",
+              "nativeQueryRef": "description",
+              "displayName": "Product"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PPA"
+                    }
+                  },
+                  "Property": "size_oz"
+                }
+              },
+              "queryRef": "PPA.size_oz",
+              "nativeQueryRef": "size_oz",
+              "displayName": "Oz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PPA"
+                    }
+                  },
+                  "Property": "base_price_per_oz"
+                }
+              },
+              "queryRef": "PPA.base_price_per_oz",
+              "nativeQueryRef": "base_price_per_oz",
+              "displayName": "Price/oz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PPA"
+                    }
+                  },
+                  "Property": "price_index_per_oz"
+                }
+              },
+              "queryRef": "PPA.price_index_per_oz",
+              "nativeQueryRef": "price_index_per_oz",
+              "displayName": "Index"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PPA"
+                    }
+                  },
+                  "Property": "elasticity"
+                }
+              },
+              "queryRef": "PPA.elasticity",
+              "nativeQueryRef": "elasticity",
+              "displayName": "Elasticity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PPA"
+                    }
+                  },
+                  "Property": "inverted_vs"
+                }
+              },
+              "queryRef": "PPA.inverted_vs",
+              "nativeQueryRef": "inverted_vs",
+              "displayName": "Inverted vs smaller pack"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PPA"
+                    }
+                  },
+                  "Property": "inversion_premium"
+                }
+              },
+              "queryRef": "PPA.inversion_premium",
+              "nativeQueryRef": "inversion_premium",
+              "displayName": "Premium/oz"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PPA"
+                    }
+                  },
+                  "Property": "opportunity"
+                }
+              },
+              "queryRef": "PPA.opportunity",
+              "nativeQueryRef": "opportunity",
+              "displayName": "Opportunity"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#52514E'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Pack-level checks and opportunity'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

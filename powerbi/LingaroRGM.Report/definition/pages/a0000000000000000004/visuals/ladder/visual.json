@@ -1,0 +1,167 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ladder",
+  "position": {
+    "x": 32,
+    "y": 252,
+    "z": 5000,
+    "height": 400,
+    "width": 928,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PPA"
+                    }
+                  },
+                  "Property": "description"
+                }
+              },
+              "queryRef": "PPA.description",
+              "nativeQueryRef": "description"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "PPA"
+                    }
+                  },
+                  "Property": "manufacturer"
+                }
+              },
+              "queryRef": "PPA.manufacturer",
+              "nativeQueryRef": "manufacturer"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "PPA"
+                        }
+                      },
+                      "Property": "size_oz"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(PPA.size_oz)",
+              "nativeQueryRef": "size_oz",
+              "displayName": "Pack size (oz)"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "PPA"
+                        }
+                      },
+                      "Property": "base_price_per_oz"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(PPA.base_price_per_oz)",
+              "nativeQueryRef": "base_price_per_oz",
+              "displayName": "Price per oz"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "markers": [
+        {
+          "properties": {
+            "markerSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Pack-price ladder: pack size (oz) vs regular price per oz'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

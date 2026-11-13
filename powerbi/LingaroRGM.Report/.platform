@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "LingaroRGM"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "bca5193a-9db9-54d3-8d89-d9f3820351a4"
+  }
+}

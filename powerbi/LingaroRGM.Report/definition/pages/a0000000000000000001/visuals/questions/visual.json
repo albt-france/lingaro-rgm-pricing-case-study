@@ -1,0 +1,235 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "questions",
+  "position": {
+    "x": 32,
+    "y": 420,
+    "z": 8000,
+    "height": 410,
+    "width": 916,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Business questions",
+                    "textStyle": {
+                      "fontSize": "20pt",
+                      "color": "#0B0B0B",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "1 · Elasticity   ",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#2A78D6",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "How price-sensitive is each category, brand and product?",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2 · Promotions   ",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#2A78D6",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Which mechanics create incremental volume, and which pay back?",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3 · Price-pack   ",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#2A78D6",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Is the price per ounce consistent across pack sizes?",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4 · Scenarios   ",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#2A78D6",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "What happens to volume, revenue and profit if price moves by x%?",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5 · Scale   ",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#2A78D6",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Does the same method hold market by market?",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Recommendation: ",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#0B0B0B",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "test price increases where elasticity is low, move trade spend from TPR-only cuts to feature + display events, fix inverted pack ladders, and roll the template out market by market.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#52514E"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

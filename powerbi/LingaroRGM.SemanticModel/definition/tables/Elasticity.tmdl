@@ -1,0 +1,156 @@
+/// Log-log price elasticities with 95% intervals and publication status (business rule BR-06)
+table Elasticity
+
+	column segment_id
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: segment_id
+
+	column level
+		dataType: string
+		summarizeBy: none
+		sourceColumn: level
+
+	column segment
+		dataType: string
+		summarizeBy: none
+		sourceColumn: segment
+
+	column category
+		dataType: string
+		summarizeBy: none
+		sourceColumn: category
+
+	column manufacturer
+		dataType: string
+		summarizeBy: none
+		sourceColumn: manufacturer
+
+	column market
+		dataType: string
+		summarizeBy: none
+		sourceColumn: market
+
+	column upc
+		dataType: double
+		summarizeBy: none
+		sourceColumn: upc
+
+	column n_obs
+		dataType: int64
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: n_obs
+
+	column n_stores
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: n_stores
+
+	column n_products
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: n_products
+
+	column n_weeks
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: n_weeks
+
+	column price_sd
+		dataType: double
+		formatString: 0.000
+		summarizeBy: none
+		sourceColumn: price_sd
+
+	column base_units_52w
+		dataType: double
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: base_units_52w
+
+	column base_revenue_52w
+		dataType: double
+		formatString: $#,0
+		summarizeBy: none
+		sourceColumn: base_revenue_52w
+
+	column avg_price_52w
+		dataType: double
+		formatString: $#,0.00
+		summarizeBy: none
+		sourceColumn: avg_price_52w
+
+	column elasticity
+		dataType: double
+		formatString: 0.00
+		summarizeBy: none
+		sourceColumn: elasticity
+
+	column se
+		dataType: double
+		formatString: 0.000
+		summarizeBy: none
+		sourceColumn: se
+
+	column ci_low
+		dataType: double
+		formatString: 0.00
+		summarizeBy: none
+		sourceColumn: ci_low
+
+	column ci_high
+		dataType: double
+		formatString: 0.00
+		summarizeBy: none
+		sourceColumn: ci_high
+
+	column p_value
+		dataType: double
+		formatString: 0.0000
+		summarizeBy: none
+		sourceColumn: p_value
+
+	column r2
+		dataType: double
+		formatString: 0.000
+		summarizeBy: none
+		sourceColumn: r2
+
+	column feature_effect
+		dataType: double
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: feature_effect
+
+	column display_effect
+		dataType: double
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: display_effect
+
+	column status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: status
+
+	column status_reason
+		dataType: string
+		summarizeBy: none
+		sourceColumn: status_reason
+
+	column plain_english
+		dataType: string
+		summarizeBy: none
+		sourceColumn: plain_english
+
+	partition Elasticity = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "output\elasticity.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Kept = Table.SelectColumns(Promoted, {"segment_id", "level", "segment", "category", "manufacturer", "market", "upc", "n_obs", "n_stores", "n_products", "n_weeks", "price_sd", "base_units_52w", "base_revenue_52w", "avg_price_52w", "elasticity", "se", "ci_low", "ci_high", "p_value", "r2", "feature_effect", "display_effect", "status", "status_reason", "plain_english"}, MissingField.UseNull),
+			    Typed = Table.TransformColumnTypes(Kept, {{"segment_id", Int64.Type}, {"level", type text}, {"segment", type text}, {"category", type text}, {"manufacturer", type text}, {"market", type text}, {"upc", type number}, {"n_obs", Int64.Type}, {"n_stores", Int64.Type}, {"n_products", Int64.Type}, {"n_weeks", Int64.Type}, {"price_sd", type number}, {"base_units_52w", type number}, {"base_revenue_52w", type number}, {"avg_price_52w", type number}, {"elasticity", type number}, {"se", type number}, {"ci_low", type number}, {"ci_high", type number}, {"p_value", type number}, {"r2", type number}, {"feature_effect", type number}, {"display_effect", type number}, {"status", type text}, {"status_reason", type text}, {"plain_english", type text}}, "en-US")
+			in
+			    Typed

@@ -1,0 +1,25 @@
+table Brand
+
+	column brand_key
+		dataType: string
+		summarizeBy: none
+		sourceColumn: brand_key
+
+	column category
+		dataType: string
+		summarizeBy: none
+		sourceColumn: category
+
+	column manufacturer
+		dataType: string
+		summarizeBy: none
+		sourceColumn: manufacturer
+
+	partition Brand = m
+		mode: import
+		source =
+			let
+			    Source = Table.SelectColumns(Product, {"brand_key", "category", "manufacturer"}),
+			    Distinct = Table.Distinct(Source)
+			in
+			    Distinct

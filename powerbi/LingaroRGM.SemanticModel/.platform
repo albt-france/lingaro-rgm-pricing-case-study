@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "LingaroRGM"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d345214a-d03e-5f0d-a403-4d3e25d6aad1"
+  }
+}

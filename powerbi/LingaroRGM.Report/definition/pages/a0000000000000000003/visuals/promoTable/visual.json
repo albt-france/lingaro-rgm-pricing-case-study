@@ -1,0 +1,302 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "promoTable",
+  "position": {
+    "x": 32,
+    "y": 710,
+    "z": 12000,
+    "height": 318,
+    "width": 1151,
+    "tabOrder": 12000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promo Effectiveness"
+                    }
+                  },
+                  "Property": "category"
+                }
+              },
+              "queryRef": "Promo Effectiveness.category",
+              "nativeQueryRef": "category",
+              "displayName": "Category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promo Effectiveness"
+                    }
+                  },
+                  "Property": "manufacturer"
+                }
+              },
+              "queryRef": "Promo Effectiveness.manufacturer",
+              "nativeQueryRef": "manufacturer",
+              "displayName": "Brand"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promo Effectiveness"
+                    }
+                  },
+                  "Property": "promo_type"
+                }
+              },
+              "queryRef": "Promo Effectiveness.promo_type",
+              "nativeQueryRef": "promo_type",
+              "displayName": "Mechanic"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promo Effectiveness"
+                    }
+                  },
+                  "Property": "promo_weeks"
+                }
+              },
+              "queryRef": "Promo Effectiveness.promo_weeks",
+              "nativeQueryRef": "promo_weeks",
+              "displayName": "Promo weeks"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promo Effectiveness"
+                    }
+                  },
+                  "Property": "avg_discount"
+                }
+              },
+              "queryRef": "Promo Effectiveness.avg_discount",
+              "nativeQueryRef": "avg_discount",
+              "displayName": "Avg discount"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promo Effectiveness"
+                    }
+                  },
+                  "Property": "uplift"
+                }
+              },
+              "queryRef": "Promo Effectiveness.uplift",
+              "nativeQueryRef": "uplift",
+              "displayName": "Uplift"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promo Effectiveness"
+                    }
+                  },
+                  "Property": "roi"
+                }
+              },
+              "queryRef": "Promo Effectiveness.roi",
+              "nativeQueryRef": "roi",
+              "displayName": "ROI"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Promo Effectiveness"
+                    }
+                  },
+                  "Property": "share_weeks_paid_back"
+                }
+              },
+              "queryRef": "Promo Effectiveness.share_weeks_paid_back",
+              "nativeQueryRef": "share_weeks_paid_back",
+              "displayName": "Weeks paid back"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "FillRule": {
+                      "Input": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Promo Effectiveness"
+                            }
+                          },
+                          "Property": "roi"
+                        }
+                      },
+                      "FillRule": {
+                        "linearGradient3": {
+                          "min": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#F4C7C6'"
+                              }
+                            }
+                          },
+                          "max": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#B7D3F6'"
+                              }
+                            }
+                          },
+                          "nullColoringStrategy": {
+                            "strategy": {
+                              "Literal": {
+                                "Value": "'asZero'"
+                              }
+                            }
+                          },
+                          "mid": {
+                            "color": {
+                              "Literal": {
+                                "Value": "'#F0EFEC'"
+                              }
+                            },
+                            "value": {
+                              "Literal": {
+                                "Value": "0D"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Promo Effectiveness.roi"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#52514E'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Brand x mechanic at a 30% margin (red = destroys profit, blue = pays back)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

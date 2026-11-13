@@ -1,0 +1,55 @@
+category,sub_category,manufacturer,upc,description,size,size_oz,units,avg_base_price,base_price_per_oz,elasticity,ci_low,ci_high,status,subcat_price_per_oz,price_index_per_oz,inverted_vs,inversion_premium,opportunity
+Bag Snacks,Pretzels,Frito Lay,2840002333,Rldgld Braided Honey Wht 10 oz,10 OZ,10.0,78427,2.929,0.2929,-1.246,-1.475,-1.017,Published,0.13270314125030439,220.7,,,No action
+Bag Snacks,Pretzels,Frito Lay,2840004770,Rldgld Pretzel Sticks 16 oz,16 OZ,16.0,119965,2.914,0.1821,-1.742,-1.989,-1.496,Published,0.13270314125030439,137.2,,,No action
+Bag Snacks,Pretzels,Frito Lay,2840004768,Rldgld Tiny Twists Prtzl 16 oz,16 OZ,16.0,162425,2.924,0.1827,-1.632,-1.935,-1.33,Published,0.13270314125030439,137.7,,,No action
+Bag Snacks,Pretzels,Mksl,7110410470,Mksl Dutch Pretzels 16 oz,16 OZ,16.0,29649,2.313,0.1446,-1.15,-1.459,-0.841,Published,0.13270314125030439,109.0,,,No action
+Bag Snacks,Pretzels,Mksl,7110410471,Mksl Pretzel Sticks 16 oz,16 OZ,16.0,23423,2.28,0.1425,-1.561,-1.87,-1.252,Published,0.13270314125030439,107.4,,,No action
+Bag Snacks,Pretzels,Mksl,7110410455,Mksl Mini Twist Pretzels 16 oz,16 OZ,16.0,33069,2.294,0.1434,-1.753,-2.074,-1.433,Published,0.13270314125030439,108.1,,,No action
+Bag Snacks,Pretzels,Private Label,1111009497,Pl Pretzel Sticks 15 oz,15 OZ,15.0,499743,1.384,0.0922,-0.643,-0.789,-0.496,Published,0.13270314125030439,69.5,,,"Price up candidate: low sensitivity, below-average price per oz"
+Bag Snacks,Pretzels,Private Label,1111009507,Pl Twist Pretzels 15 oz,15 OZ,15.0,248924,1.405,0.0937,-0.509,-0.705,-0.313,Published,0.13270314125030439,70.6,,,"Price up candidate: low sensitivity, below-average price per oz"
+Bag Snacks,Pretzels,Private Label,1111009477,Pl Mini Twist Pretzels 15 oz,15 OZ,15.0,644459,1.394,0.093,-0.678,-0.852,-0.503,Published,0.13270314125030439,70.1,,,"Price up candidate: low sensitivity, below-average price per oz"
+Bag Snacks,Pretzels,Shultz,7027312504,Shurgd Pretzel Rods 12 oz,12 OZ,12.0,81677,2.047,0.1706,-0.407,-0.571,-0.243,Published,0.13270314125030439,128.6,,,No action
+Bag Snacks,Pretzels,Shultz,7027316404,Shurgd Pretzel Sticks 16 oz,16 OZ,16.0,117925,1.963,0.1227,-0.233,-0.379,-0.086,Published,0.13270314125030439,92.5,,,"Price up candidate: low sensitivity, below-average price per oz"
+Bag Snacks,Pretzels,Shultz,7027316204,Shurgd Mini Pretzels 16 oz,16 OZ,16.0,118819,1.937,0.1211,-0.3,-0.451,-0.149,Published,0.13270314125030439,91.3,,,"Price up candidate: low sensitivity, below-average price per oz"
+Bag Snacks,Pretzels,Snyder's,7797502248,Snydr Pretzel Rods 10 oz,10 OZ,10.0,114706,2.452,0.2452,-1.603,-1.794,-1.412,Published,0.13270314125030439,184.8,,,No action
+Bag Snacks,Pretzels,Snyder's,7797508006,Snydr Ff Mini Pretzels 16 oz,16 OZ,16.0,127689,3.019,0.1887,-1.981,-2.151,-1.812,Published,0.13270314125030439,142.2,,,No action
+Bag Snacks,Pretzels,Snyder's,7797508004,Snydr Sourdough Nibblers 16 oz,16 OZ,16.0,133091,3.012,0.1883,-1.608,-1.787,-1.43,Published,0.13270314125030439,141.9,,,No action
+Cold Cereal,Adult Cereal,Post Foods,88491201427,Post Fm Sz Hnybnch Ot Alm 18 oz,18 OZ,18.0,263925,3.278,0.1821,-1.722,-2.014,-1.43,Published,0.14562768784011218,125.0,,,No action
+Cold Cereal,Adult Cereal,Post Foods,88491201426,Post Hny Bn Ots Hny Rstd 18 oz,18 OZ,18.0,304170,3.251,0.1806,-1.703,-2.04,-1.366,Published,0.14562768784011218,124.0,,,No action
+Cold Cereal,Adult Cereal,Private Label,1111085345,Pl Raisin Bran 20 oz,20 OZ,20.0,368912,1.814,0.0907,-1.0,-1.128,-0.872,Published,0.14562768784011218,62.3,,,No action
+Cold Cereal,All Family Cereal,General Mills,1600027564,Gm Cheerios 12 oz,12 OZ,12.0,515965,3.091,0.2576,-0.257,-0.3,-0.214,Published,0.21075112556816164,122.2,,,No action
+Cold Cereal,All Family Cereal,General Mills,1600027527,Gm Honey Nut Cheerios 12.25 oz,12.25 OZ,12.25,802707,2.945,0.2404,-1.17,-1.264,-1.075,Published,0.21075112556816164,114.1,,,No action
+Cold Cereal,All Family Cereal,General Mills,1600027528,Gm Cheerios 18 oz,18 OZ,18.0,367884,4.485,0.2492,-1.924,-2.113,-1.735,Published,0.21075112556816164,118.2,Gm Honey Nut Cheerios 12.25 oz,0.037,Fix ladder: bigger pack costs more per oz
+Cold Cereal,All Family Cereal,Kellogg,3800031829,Kell Bite Size Mini Wheat 18 oz,18 OZ,18.0,396287,3.29,0.1828,-1.232,-1.436,-1.028,Published,0.21075112556816164,86.7,,,No action
+Cold Cereal,All Family Cereal,Private Label,1111085319,Pl Honey Nut Toastd Oats 12.25 oz,12.25 OZ,12.25,261860,1.827,0.1491,-1.298,-1.48,-1.117,Published,0.21075112556816164,70.7,,,No action
+Cold Cereal,All Family Cereal,Private Label,1111085350,Pl Bt Sz Frstd Shrd Wht 18 oz,18 OZ,18.0,467892,2.262,0.1256,-1.622,-1.726,-1.519,Published,0.21075112556816164,59.6,,,No action
+Cold Cereal,All Family Cereal,Quaker,3000006340,Qker Life Original 13 oz,13 OZ,13.0,172031,3.113,0.2395,-2.204,-2.35,-2.059,Review,0.21075112556816164,113.6,,,No action
+Cold Cereal,Kids Cereal,Kellogg,3800039118,Kell Froot Loops 12.2 oz,12.2 OZ,12.2,458432,3.146,0.2579,-3.043,-3.295,-2.792,Published,0.2198172694958349,117.3,,,"Sensitive: hold price, use targeted promotions"
+Cold Cereal,Kids Cereal,Kellogg,3800031838,Kell Frosted Flakes 15 oz,15 OZ,15.0,564468,3.02,0.2013,-1.767,-1.92,-1.615,Published,0.2198172694958349,91.6,,,No action
+Cold Cereal,Kids Cereal,Post Foods,88491212971,Post Fruity Pebbles 11 oz,11 OZ,11.0,290553,2.707,0.2461,-2.15,-2.314,-1.987,Published,0.2198172694958349,112.0,,,No action
+Cold Cereal,Kids Cereal,Quaker,3000006560,Qker Cap N Crunch Berries 13 oz,13 OZ,13.0,335012,2.612,0.2009,-2.341,-2.578,-2.104,Review,0.2198172694958349,91.4,,,No action
+Cold Cereal,Kids Cereal,Quaker,3000006610,Qker Cap N Crunch 14 oz,14 OZ,14.0,250774,2.614,0.1867,-2.312,-2.503,-2.12,Review,0.2198172694958349,84.9,,,No action
+Frozen Pizza,Pizza/Premium,King,2066200530,Nwmn Own Pepperoni Pizza 13.2 oz,13.2 OZ,13.2,33433,6.172,0.4676,-3.001,-3.402,-2.601,Published,0.20800080941472399,224.8,,,"Sensitive: hold price, use targeted promotions"
+Frozen Pizza,Pizza/Premium,King,2066200531,Nwmn Own 4 Cheese Pizza 13.3 oz,13.3 OZ,13.3,25425,6.165,0.4636,-3.311,-3.74,-2.882,Published,0.20800080941472399,222.9,,,"Sensitive: hold price, use targeted promotions"
+Frozen Pizza,Pizza/Premium,King,2066200532,Nwmn Own Supreme Pizza 14.7 oz,14.7 OZ,14.7,13634,6.224,0.4234,-2.629,-3.006,-2.252,Published,0.20800080941472399,203.6,,,"Sensitive: hold price, use targeted promotions"
+Frozen Pizza,Pizza/Premium,Private Label,1111087398,Pl Sr Crust Pepprn Pizza 29.6 oz,29.6 OZ,29.6,179381,3.864,0.1305,-2.699,-2.918,-2.48,Published,0.20800080941472399,62.7,,,"Sensitive: hold price, use targeted promotions"
+Frozen Pizza,Pizza/Premium,Private Label,1111087396,Pl Sr Crust 3 Meat Pizza 30.5 oz,30.5 OZ,30.5,142701,3.76,0.1233,-2.648,-2.893,-2.403,Published,0.20800080941472399,59.3,,,"Sensitive: hold price, use targeted promotions"
+Frozen Pizza,Pizza/Premium,Private Label,1111087395,Pl Sr Crust Suprm Pizza 32.7 oz,32.7 OZ,32.7,139891,3.796,0.1161,-2.507,-2.741,-2.273,Published,0.20800080941472399,55.8,,,"Sensitive: hold price, use targeted promotions"
+Frozen Pizza,Pizza/Premium,Tombstone,7192100339,Digrn Pepp Pizza 28.3 oz,28.3 OZ,28.3,259162,6.604,0.2334,-2.571,-2.715,-2.427,Published,0.20800080941472399,112.2,,,"Sensitive: hold price, use targeted promotions"
+Frozen Pizza,Pizza/Premium,Tombstone,7192100336,Digiorno Three Meat 29.8 oz,29.8 OZ,29.8,139951,6.582,0.2209,-2.937,-3.104,-2.769,Published,0.20800080941472399,106.2,,,"Sensitive: hold price, use targeted promotions"
+Frozen Pizza,Pizza/Premium,Tombstone,7192100337,Digrn Supreme Pizza 32.7 oz,32.7 OZ,32.7,191083,6.591,0.2016,-2.696,-2.88,-2.511,Published,0.20800080941472399,96.9,,,"Sensitive: hold price, use targeted promotions"
+Frozen Pizza,Pizza/Premium,Tony's,7218063052,Frsc Brck Ovn Itl Pep Pz 22.7 oz,22.7 OZ,22.7,82351,6.821,0.3005,-2.703,-2.968,-2.437,Published,0.20800080941472399,144.5,,,"Sensitive: hold price, use targeted promotions"
+Frozen Pizza,Pizza/Premium,Tony's,7218063983,Frsc 4 Cheese Pizza 26.11 oz,26.11 OZ,26.11,55593,6.821,0.2613,-2.752,-3.056,-2.447,Published,0.20800080941472399,125.6,,,"Sensitive: hold price, use targeted promotions"
+Frozen Pizza,Pizza/Premium,Tony's,7218063979,Frsc Pepperoni Pizza 27.35 oz,27.35 OZ,27.35,73175,6.804,0.2488,-2.943,-3.249,-2.637,Published,0.20800080941472399,119.6,,,"Sensitive: hold price, use targeted promotions"
+Oral Hygiene Products,Mouthwash/Rinses And Sprays,Chattem,4116709448,Act Kids Bblgum Fluor Rns 532 ml,532 ML,17.98907805974944,18045,4.633,0.2575,-1.044,-1.325,-0.762,Published,0.4006872441350864,64.3,,,No action
+Oral Hygiene Products,Mouthwash/Rinses And Sprays,Chattem,4116709428,Act Mint A/Cav Fluor Rns 532 ml,532 ML,17.98907805974944,16389,4.617,0.2567,-0.917,-1.22,-0.614,Published,0.4006872441350864,64.1,,,No action
+Oral Hygiene Products,Mouthwash/Rinses And Sprays,P&G,3700019521,Crest Ph Whtg Cln Mint Tp 4.2 oz,4.2 OZ,4.2,39452,3.446,0.8205,-1.704,-1.827,-1.581,Published,0.4006872441350864,204.8,,,No action
+Oral Hygiene Products,Mouthwash/Rinses And Sprays,P&G,3700031613,Scope Orig Mint Mouthwash 1 lt,1 LT,33.81405650328842,42484,4.302,0.1272,-1.518,-1.687,-1.348,Published,0.4006872441350864,31.7,,,No action
+Oral Hygiene Products,Mouthwashes (Antiseptic),Chattem,4116709565,Act Rstr Cl Splsh Mint Mw 532 ml,532 ML,17.98907805974944,15222,4.945,0.2749,-0.911,-1.165,-0.657,Published,0.1424716382312888,193.0,,,No action
+Oral Hygiene Products,Mouthwashes (Antiseptic),P&G,3700044982,Crest Ph Cln Mint Rinse 1 lt,1 LT,33.81405650328842,45872,5.297,0.1566,-1.284,-1.415,-1.152,Published,0.1424716382312888,109.9,,,No action
+Oral Hygiene Products,Mouthwashes (Antiseptic),Private Label,1111038080,Pl Antsptc Spg Mnt Mthws 500 ml,500 ML,16.90702825164421,67780,1.805,0.1067,-1.137,-1.214,-1.061,Published,0.1424716382312888,74.9,,,No action
+Oral Hygiene Products,Mouthwashes (Antiseptic),Private Label,1111038078,Pl Bl Mint Antsptc Rinse 500 ml,500 ML,16.90702825164421,85707,1.799,0.1064,-1.029,-1.093,-0.965,Published,0.1424716382312888,74.7,,,No action
+Oral Hygiene Products,Mouthwashes (Antiseptic),Private Label,1111035398,Pl Bl Mint Antsptc Rinse 1.5 lt,1.5 LT,50.721084754932626,30833,3.2,0.0631,-0.679,-0.815,-0.543,Published,0.1424716382312888,44.3,,,"Price up candidate: low sensitivity, below-average price per oz"
+Oral Hygiene Products,Mouthwashes (Antiseptic),Warner,31254742725,Lstrne Cl Mint Antsptc Mw 500 ml,500 ML,16.90702825164421,42098,4.297,0.2541,-1.985,-2.149,-1.821,Published,0.1424716382312888,178.4,,,No action
+Oral Hygiene Products,Mouthwashes (Antiseptic),Warner,31254742735,Lstrne Cl Mint Antsptc Mw 1 lt,1 LT,33.81405650328842,64962,4.992,0.1476,-1.892,-2.038,-1.746,Published,0.1424716382312888,103.6,,,No action
+Oral Hygiene Products,Mouthwashes (Antiseptic),Warner,31254742835,Lstrne Frs Brst Antspc Mw 1 lt,1 LT,33.81405650328842,49197,5.0,0.1479,-1.992,-2.17,-1.815,Published,0.1424716382312888,103.8,,,No action

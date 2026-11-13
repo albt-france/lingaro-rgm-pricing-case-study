@@ -1,0 +1,235 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "data",
+  "position": {
+    "x": 972,
+    "y": 420,
+    "z": 9000,
+    "height": 410,
+    "width": 916,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Data & methods",
+                    "textStyle": {
+                      "fontSize": "20pt",
+                      "color": "#0B0B0B",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "REAL RETAIL DATA   ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#52514E",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "dunnhumby 'Breakfast at the Frat': 524,950 store-product-weeks, 55 products, 77 stores, 4 categories.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "PUBLIC DATA   ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#52514E",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "Lingaro website (facts, dated) and Eurostat HICP food inflation.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "SIMULATED   ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#52514E",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "NielsenIQ / Circana-style market shares and competitor prices (seed 42).",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "SQL   ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#52514E",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "DuckDB: promo baseline with window functions, hierarchy roll-ups, PPA, data quality.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Python   ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#52514E",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "log-log OLS (statsmodels) with store x product and month effects; CI and publish rules.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Power BI   ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#52514E",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "star schema, 41 DAX measures, what-if simulator.",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

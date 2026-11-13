@@ -1,0 +1,552 @@
+{
+  "data": {
+    "rows": 524950,
+    "weeks": 156,
+    "stores": 77,
+    "products": 55,
+    "categories": 4,
+    "manufacturers": 16,
+    "first_week": "2009-01-14",
+    "last_week": "2012-01-04",
+    "states": [
+      "IN",
+      "KY",
+      "OH",
+      "TX"
+    ],
+    "revenue_l52w": 9524792.879999999,
+    "units_l52w": 3355468.0,
+    "promo_revenue_share": 0.40298044309777015,
+    "dq_ok_share": 0.9955691018192209,
+    "duplicate_stores": 2,
+    "phase_out_brands": [
+      "Colgate",
+      "Quaker"
+    ],
+    "phase_out_products": 4
+  },
+  "elasticity": {
+    "pooled": {
+      "elasticity": -1.613,
+      "ci_low": -1.668,
+      "ci_high": -1.558
+    },
+    "categories": [
+      {
+        "segment": "Frozen Pizza",
+        "elasticity": -2.866,
+        "ci_low": -3.013,
+        "ci_high": -2.72,
+        "n_obs": 110766,
+        "status": "Published"
+      },
+      {
+        "segment": "Cold Cereal",
+        "elasticity": -1.608,
+        "ci_low": -1.662,
+        "ci_high": -1.554,
+        "n_obs": 169498,
+        "status": "Published"
+      },
+      {
+        "segment": "Oral Hygiene Products",
+        "elasticity": -1.261,
+        "ci_low": -1.317,
+        "ci_high": -1.205,
+        "n_obs": 116173,
+        "status": "Published"
+      },
+      {
+        "segment": "Bag Snacks",
+        "elasticity": -1.228,
+        "ci_low": -1.308,
+        "ci_high": -1.148,
+        "n_obs": 126187,
+        "status": "Published"
+      }
+    ],
+    "most_elastic": "Frozen Pizza",
+    "least_elastic": "Bag Snacks",
+    "published": {
+      "Published": 72,
+      "Review": 6
+    },
+    "positive_sign": 0,
+    "n_segments": 78,
+    "split": [
+      {
+        "category": "Bag Snacks",
+        "component": "Regular price",
+        "elasticity": -1.606,
+        "ci_low": -1.727,
+        "ci_high": -1.486,
+        "p_value": 0.0,
+        "n_obs": 126187,
+        "base_price_sd": 0.111,
+        "status": "Estimated",
+        "note": NaN
+      },
+      {
+        "category": "Bag Snacks",
+        "component": "Promo price cut",
+        "elasticity": -1.002,
+        "ci_low": -1.078,
+        "ci_high": -0.926,
+        "p_value": 0.0,
+        "n_obs": 126187,
+        "base_price_sd": 0.111,
+        "status": "Estimated",
+        "note": NaN
+      },
+      {
+        "category": "Cold Cereal",
+        "component": "Regular price",
+        "elasticity": -1.698,
+        "ci_low": -1.8,
+        "ci_high": -1.595,
+        "p_value": 0.0,
+        "n_obs": 169498,
+        "base_price_sd": 0.071,
+        "status": "Estimated",
+        "note": NaN
+      },
+      {
+        "category": "Cold Cereal",
+        "component": "Promo price cut",
+        "elasticity": -1.581,
+        "ci_low": -1.631,
+        "ci_high": -1.532,
+        "p_value": 0.0,
+        "n_obs": 169498,
+        "base_price_sd": 0.071,
+        "status": "Estimated",
+        "note": NaN
+      },
+      {
+        "category": "Frozen Pizza",
+        "component": "Regular price",
+        "elasticity": -2.794,
+        "ci_low": -2.927,
+        "ci_high": -2.661,
+        "p_value": 0.0,
+        "n_obs": 110766,
+        "base_price_sd": 0.087,
+        "status": "Estimated",
+        "note": NaN
+      },
+      {
+        "category": "Frozen Pizza",
+        "component": "Promo price cut",
+        "elasticity": -2.899,
+        "ci_low": -3.061,
+        "ci_high": -2.738,
+        "p_value": 0.0,
+        "n_obs": 110766,
+        "base_price_sd": 0.087,
+        "status": "Estimated",
+        "note": NaN
+      },
+      {
+        "category": "Oral Hygiene Products",
+        "component": "Regular price",
+        "elasticity": -1.18,
+        "ci_low": -1.25,
+        "ci_high": -1.11,
+        "p_value": 0.0,
+        "n_obs": 116173,
+        "base_price_sd": 0.088,
+        "status": "Estimated",
+        "note": NaN
+      },
+      {
+        "category": "Oral Hygiene Products",
+        "component": "Promo price cut",
+        "elasticity": -1.285,
+        "ci_low": -1.343,
+        "ci_high": -1.227,
+        "p_value": 0.0,
+        "n_obs": 116173,
+        "base_price_sd": 0.088,
+        "status": "Estimated",
+        "note": NaN
+      }
+    ],
+    "cross_substitutes": 11,
+    "cross_tested": 19
+  },
+  "promo": {
+    "by_type": [
+      {
+        "promo_type": "Display",
+        "promo_weeks": 17926,
+        "units": 590141,
+        "baseline_units": 280112.6977,
+        "discount_cost": 390049.37,
+        "net_incr_profit": -77996.3965,
+        "avg_discount": 0.1535388888888889,
+        "uplift": 1.106798459497325,
+        "roi": -0.199965446681788
+      },
+      {
+        "promo_type": "Feature",
+        "promo_weeks": 16687,
+        "units": 616326,
+        "baseline_units": 222712.6584,
+        "discount_cost": 598847.02,
+        "net_incr_profit": -160176.7467,
+        "avg_discount": 0.22583999999999999,
+        "uplift": 1.7673595404400237,
+        "roi": -0.26747523382515953
+      },
+      {
+        "promo_type": "Feature + Display",
+        "promo_weeks": 18070,
+        "units": 1214799,
+        "baseline_units": 283810.0957,
+        "discount_cost": 1294223.85,
+        "net_incr_profit": -255202.4595,
+        "avg_discount": 0.24015999999999998,
+        "uplift": 3.280323421912718,
+        "roi": -0.19718571829749543
+      },
+      {
+        "promo_type": "TPR only",
+        "promo_weeks": 48269,
+        "units": 915640,
+        "baseline_units": 689545.5299,
+        "discount_cost": 537079.16,
+        "net_incr_profit": -323362.2062,
+        "avg_discount": 0.2001315789473684,
+        "uplift": 0.3278891099950847,
+        "roi": -0.6020755044749828
+      }
+    ],
+    "best_uplift_type": "Feature + Display",
+    "best_uplift": 3.280323421912718,
+    "tpr_uplift": 0.3278891099950847,
+    "tpr_roi": -0.6020755044749828,
+    "brand_mechanics": 67,
+    "brand_mechanics_paying_back": 4,
+    "net_profit_total": -816737.8089,
+    "discount_cost_total": 2820199.4,
+    "sensitivity": {
+      "0.2": -0.5261201351223604,
+      "0.3": -0.28960285903897426,
+      "0.4": -0.05308558288467121
+    },
+    "dip": [
+      {
+        "category": "Bag Snacks",
+        "dip": 0.0097
+      },
+      {
+        "category": "Cold Cereal",
+        "dip": 0.0453
+      },
+      {
+        "category": "Frozen Pizza",
+        "dip": 0.1001
+      },
+      {
+        "category": "Oral Hygiene Products",
+        "dip": 0.0006
+      }
+    ],
+    "dip_avg": 0.04271177712351504,
+    "cannibalisation": [
+      {
+        "category": "Bag Snacks",
+        "context": "Another product of the category on promo",
+        "weeks": 68008,
+        "units": 1138172,
+        "baseline_units": 1139910.6585,
+        "vs_baseline": -0.0015
+      },
+      {
+        "category": "Bag Snacks",
+        "context": "No promo in the category",
+        "weeks": 12758,
+        "units": 191646,
+        "baseline_units": 185772.8124,
+        "vs_baseline": 0.0316
+      },
+      {
+        "category": "Cold Cereal",
+        "context": "Another product of the category on promo",
+        "weeks": 115506,
+        "units": 2919288,
+        "baseline_units": 2912805.5646,
+        "vs_baseline": 0.0022
+      },
+      {
+        "category": "Cold Cereal",
+        "context": "No promo in the category",
+        "weeks": 8876,
+        "units": 240550,
+        "baseline_units": 231506.5153,
+        "vs_baseline": 0.0391
+      },
+      {
+        "category": "Frozen Pizza",
+        "context": "Another product of the category on promo",
+        "weeks": 48328,
+        "units": 376917,
+        "baseline_units": 373961.3569,
+        "vs_baseline": 0.0079
+      },
+      {
+        "category": "Frozen Pizza",
+        "context": "No promo in the category",
+        "weeks": 22913,
+        "units": 190304,
+        "baseline_units": 184571.5652,
+        "vs_baseline": 0.0311
+      },
+      {
+        "category": "Oral Hygiene Products",
+        "context": "Another product of the category on promo",
+        "weeks": 66457,
+        "units": 234296,
+        "baseline_units": 234758.7052,
+        "vs_baseline": -0.002
+      },
+      {
+        "category": "Oral Hygiene Products",
+        "context": "No promo in the category",
+        "weeks": 6736,
+        "units": 25718,
+        "baseline_units": 25431.2069,
+        "vs_baseline": 0.0113
+      }
+    ],
+    "cannibalisation_avg": 0.0015524645961539907
+  },
+  "ppa": {
+    "products": 54,
+    "inversions": 1,
+    "price_up": 6,
+    "sensitive": 13,
+    "worst_inversion": [
+      {
+        "description": "Gm Cheerios 18 oz",
+        "inverted_vs": "Gm Honey Nut Cheerios 12.25 oz",
+        "inversion_premium": 0.037
+      }
+    ]
+  },
+  "simulator": {
+    "segment": "Cold Cereal | General Mills",
+    "elasticity": -0.78,
+    "ci": [
+      -0.82,
+      -0.741
+    ],
+    "base_revenue": 1704882.99,
+    "volume_pct": -0.03734,
+    "volume_pct_low": -0.03922,
+    "volume_pct_high": -0.03551,
+    "revenue_pct": 0.01079,
+    "revenue_pct_low": 0.00882,
+    "revenue_pct_high": 0.01272,
+    "profit_pct": 0.1231,
+    "profit_pct_low": 0.12091,
+    "profit_pct_high": 0.12524,
+    "revenue_delta": 18398.50121,
+    "profit_delta": 62962.26674,
+    "stances": {
+      "Moderate: price up grows profit but loses volume, test first": 13,
+      "Low sensitivity: price increase candidate": 3,
+      "Low sensitivity (uncertain): test a price increase": 1
+    },
+    "low_sensitivity_brands": [
+      "Bag Snacks | Shultz",
+      "Bag Snacks | Private Label",
+      "Cold Cereal | General Mills"
+    ]
+  },
+  "markets": {
+    "table": [
+      {
+        "market": "IN",
+        "category": "Bag Snacks",
+        "elasticity": NaN,
+        "ci_low": NaN,
+        "ci_high": NaN,
+        "n_obs": 2283,
+        "status": "Insufficient data"
+      },
+      {
+        "market": "KY",
+        "category": "Bag Snacks",
+        "elasticity": NaN,
+        "ci_low": NaN,
+        "ci_high": NaN,
+        "n_obs": 7951,
+        "status": "Insufficient data"
+      },
+      {
+        "market": "OH",
+        "category": "Bag Snacks",
+        "elasticity": -1.22,
+        "ci_low": -1.312,
+        "ci_high": -1.128,
+        "n_obs": 64693,
+        "status": "Published"
+      },
+      {
+        "market": "TX",
+        "category": "Bag Snacks",
+        "elasticity": -1.084,
+        "ci_low": -1.174,
+        "ci_high": -0.994,
+        "n_obs": 51260,
+        "status": "Published"
+      },
+      {
+        "market": "IN",
+        "category": "Cold Cereal",
+        "elasticity": NaN,
+        "ci_low": NaN,
+        "ci_high": NaN,
+        "n_obs": 2204,
+        "status": "Insufficient data"
+      },
+      {
+        "market": "KY",
+        "category": "Cold Cereal",
+        "elasticity": NaN,
+        "ci_low": NaN,
+        "ci_high": NaN,
+        "n_obs": 8783,
+        "status": "Insufficient data"
+      },
+      {
+        "market": "OH",
+        "category": "Cold Cereal",
+        "elasticity": -1.708,
+        "ci_low": -1.781,
+        "ci_high": -1.636,
+        "n_obs": 67684,
+        "status": "Published"
+      },
+      {
+        "market": "TX",
+        "category": "Cold Cereal",
+        "elasticity": -1.52,
+        "ci_low": -1.592,
+        "ci_high": -1.448,
+        "n_obs": 90827,
+        "status": "Published"
+      },
+      {
+        "market": "IN",
+        "category": "Frozen Pizza",
+        "elasticity": NaN,
+        "ci_low": NaN,
+        "ci_high": NaN,
+        "n_obs": 1504,
+        "status": "Insufficient data"
+      },
+      {
+        "market": "KY",
+        "category": "Frozen Pizza",
+        "elasticity": NaN,
+        "ci_low": NaN,
+        "ci_high": NaN,
+        "n_obs": 5950,
+        "status": "Insufficient data"
+      },
+      {
+        "market": "OH",
+        "category": "Frozen Pizza",
+        "elasticity": -3.228,
+        "ci_low": -3.387,
+        "ci_high": -3.07,
+        "n_obs": 44822,
+        "status": "Published"
+      },
+      {
+        "market": "TX",
+        "category": "Frozen Pizza",
+        "elasticity": -2.339,
+        "ci_low": -2.46,
+        "ci_high": -2.217,
+        "n_obs": 58490,
+        "status": "Published"
+      },
+      {
+        "market": "IN",
+        "category": "Oral Hygiene Products",
+        "elasticity": NaN,
+        "ci_low": NaN,
+        "ci_high": NaN,
+        "n_obs": 1601,
+        "status": "Insufficient data"
+      },
+      {
+        "market": "KY",
+        "category": "Oral Hygiene Products",
+        "elasticity": NaN,
+        "ci_low": NaN,
+        "ci_high": NaN,
+        "n_obs": 5820,
+        "status": "Insufficient data"
+      },
+      {
+        "market": "OH",
+        "category": "Oral Hygiene Products",
+        "elasticity": -1.375,
+        "ci_low": -1.447,
+        "ci_high": -1.303,
+        "n_obs": 47323,
+        "status": "Published"
+      },
+      {
+        "market": "TX",
+        "category": "Oral Hygiene Products",
+        "elasticity": -1.193,
+        "ci_low": -1.268,
+        "ci_high": -1.117,
+        "n_obs": 61429,
+        "status": "Published"
+      }
+    ],
+    "spread": {
+      "Bag Snacks": 0.14,
+      "Cold Cereal": 0.19,
+      "Frozen Pizza": 0.89,
+      "Oral Hygiene Products": 0.18
+    },
+    "published": 8,
+    "segments": 16,
+    "published_markets": [
+      "OH",
+      "TX"
+    ],
+    "unpublished_markets": [
+      "IN",
+      "KY"
+    ],
+    "more_sensitive_everywhere": "OH",
+    "n_categories": 4
+  },
+  "market_sim": {
+    "quarter": "2011Q4",
+    "most_expensive": {
+      "brand_key": "Oral Hygiene Products | Warner",
+      "price_index_vs_competitors": 107.29
+    },
+    "share_gap_max": {
+      "brand_key": "Bag Snacks | Snyder's",
+      "retailer_value_share": 0.2223,
+      "market_value_share": 0.1318
+    }
+  },
+  "eurostat": {
+    "food_2022": 12.2,
+    "food_2023": 12.7,
+    "food_2025": 2.8,
+    "food_cum_2020_2025": 0.3461013556546264,
+    "all_cum_2020_2025": 0.25624054462934964
+  }
+}

@@ -1,0 +1,20 @@
+table 'Promo Type'
+
+	column promo_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: promo_type
+		sortByColumn: sort_order
+
+	column sort_order
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: sort_order
+
+	partition 'Promo Type' = m
+		mode: import
+		source =
+			#table(type table [promo_type = text, sort_order = Int64.Type],
+			    {{"No promo", 0}, {"TPR only", 1}, {"Display", 2}, {"Feature", 3}, {"Feature + Display", 4}})

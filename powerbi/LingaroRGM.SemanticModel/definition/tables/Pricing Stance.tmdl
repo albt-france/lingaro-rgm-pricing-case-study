@@ -1,0 +1,51 @@
+/// Pricing stance per published segment (business rule BR-11)
+table 'Pricing Stance'
+
+	column segment_id
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: segment_id
+
+	column level
+		dataType: string
+		summarizeBy: none
+		sourceColumn: level
+
+	column segment
+		dataType: string
+		summarizeBy: none
+		sourceColumn: segment
+
+	column elasticity
+		dataType: double
+		formatString: 0.00
+		summarizeBy: none
+		sourceColumn: elasticity
+
+	column ci_low
+		dataType: double
+		formatString: 0.00
+		summarizeBy: none
+		sourceColumn: ci_low
+
+	column ci_high
+		dataType: double
+		formatString: 0.00
+		summarizeBy: none
+		sourceColumn: ci_high
+
+	column stance
+		dataType: string
+		summarizeBy: none
+		sourceColumn: stance
+
+	partition 'Pricing Stance' = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "output\pricing_stance.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Kept = Table.SelectColumns(Promoted, {"segment_id", "level", "segment", "elasticity", "ci_low", "ci_high", "stance"}, MissingField.UseNull),
+			    Typed = Table.TransformColumnTypes(Kept, {{"segment_id", Int64.Type}, {"level", type text}, {"segment", type text}, {"elasticity", type number}, {"ci_low", type number}, {"ci_high", type number}, {"stance", type text}}, "en-US")
+			in
+			    Typed

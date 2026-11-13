@@ -1,0 +1,64 @@
+/// Brand units vs rest-of-category price
+table 'Cross Elasticity'
+
+	column category
+		dataType: string
+		summarizeBy: none
+		sourceColumn: category
+
+	column manufacturer
+		dataType: string
+		summarizeBy: none
+		sourceColumn: manufacturer
+
+	column n_obs
+		dataType: int64
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: n_obs
+
+	column own_elasticity
+		dataType: double
+		formatString: 0.00
+		summarizeBy: none
+		sourceColumn: own_elasticity
+
+	column cross_elasticity
+		dataType: double
+		formatString: 0.00
+		summarizeBy: none
+		sourceColumn: cross_elasticity
+
+	column ci_low
+		dataType: double
+		formatString: 0.00
+		summarizeBy: none
+		sourceColumn: ci_low
+
+	column ci_high
+		dataType: double
+		formatString: 0.00
+		summarizeBy: none
+		sourceColumn: ci_high
+
+	column p_value
+		dataType: double
+		formatString: 0.0000
+		summarizeBy: none
+		sourceColumn: p_value
+
+	column reading
+		dataType: string
+		summarizeBy: none
+		sourceColumn: reading
+
+	partition 'Cross Elasticity' = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "output\cross_elasticity.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Kept = Table.SelectColumns(Promoted, {"category", "manufacturer", "n_obs", "own_elasticity", "cross_elasticity", "ci_low", "ci_high", "p_value", "reading"}, MissingField.UseNull),
+			    Typed = Table.TransformColumnTypes(Kept, {{"category", type text}, {"manufacturer", type text}, {"n_obs", Int64.Type}, {"own_elasticity", type number}, {"cross_elasticity", type number}, {"ci_low", type number}, {"ci_high", type number}, {"p_value", type number}, {"reading", type text}}, "en-US")
+			in
+			    Typed

@@ -1,0 +1,163 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "howto",
+  "position": {
+    "x": 32,
+    "y": 854,
+    "z": 10000,
+    "height": 174,
+    "width": 1856,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "How to read this report",
+                    "textStyle": {
+                      "fontSize": "15pt",
+                      "color": "#0B0B0B",
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Titles  ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#52514E",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "state the conclusion.    ",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "color": "#0B0B0B"
+                    }
+                  },
+                  {
+                    "value": "Tags  ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#52514E",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "REAL RETAIL DATA / PUBLIC / SIMULATED mark the source.    ",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "color": "#0B0B0B"
+                    }
+                  },
+                  {
+                    "value": "Elasticity  ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#52514E",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "-1.8 = +1% price, about -1.8% units. It is a correlation on history, not an experiment.    ",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "color": "#0B0B0B"
+                    }
+                  },
+                  {
+                    "value": "Margins  ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "color": "#52514E",
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": "are ASSUMED (30% of regular price) and can be changed in the slicer.",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "color": "#0B0B0B"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "14D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "18D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

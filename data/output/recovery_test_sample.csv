@@ -1,0 +1,11 @@
+segment,true,elasticity,ci_low,ci_high,inside_ci,error
+Sample Toasted Oats 12 oz,-1.6,-1.672,-1.732,-1.612,False,-0.07199999999999984
+Sample Toasted Oats 20 oz,-1.4,-1.391,-1.457,-1.325,True,0.008999999999999897
+Sample Honey Flakes 15 oz,-1.9,-1.942,-2.073,-1.81,True,-0.04200000000000004
+Pl Corn Flakes 18 oz,-1.2,-1.135,-1.237,-1.032,True,0.06499999999999995
+Sample Pretzel Twists 16 oz,-0.9,-0.794,-0.937,-0.651,True,0.10599999999999998
+Pl Pretzel Sticks 16 oz,-0.7,-0.639,-0.754,-0.524,True,0.06099999999999994
+Sample Pepperoni Pizza 29 oz,-1.1,-1.173,-1.285,-1.061,True,-0.07299999999999995
+Sample Cheese Pizza 21 oz,-1.0,-1.055,-1.149,-0.962,True,-0.05499999999999994
+Sample Mint Mouthwash 1 lt,-0.6,-0.562,-0.653,-0.471,True,0.03799999999999992
+Sample Mint Mouthwash 500 ml,-0.7,-0.626,-0.771,-0.48,True,0.07399999999999995

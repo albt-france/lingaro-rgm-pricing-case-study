@@ -1,0 +1,106 @@
+/// REAL RETAIL DATA - weekly sales by store and product (dunnhumby Breakfast at the Frat), with promo baseline
+table Sales
+
+	column week_end_date
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: week_end_date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column store_id
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: store_id
+
+	column upc
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: upc
+
+	column units
+		dataType: int64
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: units
+
+	column spend
+		dataType: double
+		formatString: $#,0.00
+		summarizeBy: none
+		sourceColumn: spend
+
+	column price
+		dataType: double
+		formatString: $#,0.00
+		summarizeBy: none
+		sourceColumn: price
+
+	column base_price
+		dataType: double
+		formatString: $#,0.00
+		summarizeBy: none
+		sourceColumn: base_price
+
+	column discount_pct
+		dataType: double
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: discount_pct
+
+	column feature
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: feature
+
+	column display
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: display
+
+	column tpr_only
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: tpr_only
+
+	column promo_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: promo_type
+
+	column is_promo
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: is_promo
+
+	column dq_ok
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: dq_ok
+
+	column baseline_units
+		dataType: double
+		formatString: #,0.00
+		summarizeBy: none
+		sourceColumn: baseline_units
+
+	column baseline_n_weeks
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: baseline_n_weeks
+
+	column is_post_promo_week
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: is_post_promo_week
+
+	partition Sales = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "clean\sales_promo_weekly.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Kept = Table.SelectColumns(Promoted, {"week_end_date", "store_id", "upc", "units", "spend", "price", "base_price", "discount_pct", "feature", "display", "tpr_only", "promo_type", "is_promo", "dq_ok", "baseline_units", "baseline_n_weeks", "is_post_promo_week"}, MissingField.UseNull),
+			    Typed = Table.TransformColumnTypes(Kept, {{"week_end_date", type date}, {"store_id", Int64.Type}, {"upc", Int64.Type}, {"units", Int64.Type}, {"spend", type number}, {"price", type number}, {"base_price", type number}, {"discount_pct", type number}, {"feature", Int64.Type}, {"display", Int64.Type}, {"tpr_only", Int64.Type}, {"promo_type", type text}, {"is_promo", Int64.Type}, {"dq_ok", Int64.Type}, {"baseline_units", type number}, {"baseline_n_weeks", Int64.Type}, {"is_post_promo_week", Int64.Type}}, "en-US")
+			in
+			    Typed

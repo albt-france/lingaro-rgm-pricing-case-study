@@ -1,0 +1,186 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "elSplit",
+  "position": {
+    "x": 1281,
+    "y": 644,
+    "z": 11000,
+    "height": 384,
+    "width": 607,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Elasticity Split"
+                    }
+                  },
+                  "Property": "category"
+                }
+              },
+              "queryRef": "Elasticity Split.category",
+              "nativeQueryRef": "category",
+              "displayName": "Category"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Elasticity Split"
+                    }
+                  },
+                  "Property": "component"
+                }
+              },
+              "queryRef": "Elasticity Split.component",
+              "nativeQueryRef": "component",
+              "displayName": "Price component"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Elasticity Split"
+                    }
+                  },
+                  "Property": "elasticity"
+                }
+              },
+              "queryRef": "Elasticity Split.elasticity",
+              "nativeQueryRef": "elasticity",
+              "displayName": "Elasticity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Elasticity Split"
+                    }
+                  },
+                  "Property": "ci_low"
+                }
+              },
+              "queryRef": "Elasticity Split.ci_low",
+              "nativeQueryRef": "ci_low",
+              "displayName": "CI low"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Elasticity Split"
+                    }
+                  },
+                  "Property": "ci_high"
+                }
+              },
+              "queryRef": "Elasticity Split.ci_high",
+              "nativeQueryRef": "ci_high",
+              "displayName": "CI high"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#52514E'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "subTitle": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Regular price vs promo price cut (shoppers react more to short cuts)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

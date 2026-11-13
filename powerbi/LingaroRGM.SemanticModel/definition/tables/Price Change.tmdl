@@ -1,0 +1,12 @@
+table 'Price Change'
+
+	column 'Price Change'
+		dataType: double
+		formatString: +0%;-0%;0%
+		summarizeBy: none
+		sourceColumn: Price Change
+
+	partition 'Price Change' = m
+		mode: import
+		source =
+			#table(type table [Price Change = number], List.Transform({-10..10}, each {_ / 100}))

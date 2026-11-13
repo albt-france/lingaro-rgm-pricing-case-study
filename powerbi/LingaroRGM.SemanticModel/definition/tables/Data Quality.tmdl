@@ -1,0 +1,29 @@
+/// Data quality checks (business rule BR-07)
+table 'Data Quality'
+
+	column check_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: check_name
+
+	column rows_hit
+		dataType: double
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: rows_hit
+
+	column note
+		dataType: string
+		summarizeBy: none
+		sourceColumn: note
+
+	partition 'Data Quality' = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "output\sql_05_data_quality.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Kept = Table.SelectColumns(Promoted, {"check_name", "rows_hit", "note"}, MissingField.UseNull),
+			    Typed = Table.TransformColumnTypes(Kept, {{"check_name", type text}, {"rows_hit", type number}, {"note", type text}}, "en-US")
+			in
+			    Typed

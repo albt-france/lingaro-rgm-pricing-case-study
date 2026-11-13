@@ -1,0 +1,80 @@
+category,manufacturer,product,level_id,units,revenue,avg_price,avg_base_price,promo_revenue_share
+All categories,(all),(all),7,3355468.0,9524793.0,2.84,3.17,0.387
+Bag Snacks,(all),(all),3,820046.0,1553086.0,1.89,1.99,0.358
+Bag Snacks,Frito Lay,(all),1,106144.0,304760.0,2.87,3.06,0.273
+Bag Snacks,Frito Lay,Rldgld Braided Honey Wht 10 oz,0,20751.0,60538.0,2.92,3.08,0.249
+Bag Snacks,Frito Lay,Rldgld Pretzel Sticks 16 oz,0,35292.0,100823.0,2.86,3.06,0.283
+Bag Snacks,Frito Lay,Rldgld Tiny Twists Prtzl 16 oz,0,50101.0,143399.0,2.86,3.06,0.275
+Bag Snacks,Mksl,(all),1,36277.0,75301.0,2.08,2.16,0.207
+Bag Snacks,Mksl,Mksl Dutch Pretzels 16 oz,0,11625.0,24261.0,2.09,2.18,0.205
+Bag Snacks,Mksl,Mksl Mini Twist Pretzels 16 oz,0,14078.0,29123.0,2.07,2.16,0.217
+Bag Snacks,Mksl,Mksl Pretzel Sticks 16 oz,0,10574.0,21917.0,2.07,2.16,0.196
+Bag Snacks,Private Label,(all),1,448113.0,642485.0,1.43,1.44,0.328
+Bag Snacks,Private Label,Pl Mini Twist Pretzels 15 oz,0,221581.0,319717.0,1.44,1.45,0.331
+Bag Snacks,Private Label,Pl Pretzel Sticks 15 oz,0,158105.0,224873.0,1.42,1.43,0.351
+Bag Snacks,Private Label,Pl Twist Pretzels 15 oz,0,68427.0,97895.0,1.43,1.44,0.264
+Bag Snacks,Shultz,(all),1,102492.0,184939.0,1.8,2.03,0.462
+Bag Snacks,Shultz,Shurgd Mini Pretzels 16 oz,0,37039.0,65892.0,1.78,2.01,0.474
+Bag Snacks,Shultz,Shurgd Pretzel Rods 12 oz,0,27287.0,50463.0,1.85,2.08,0.431
+Bag Snacks,Shultz,Shurgd Pretzel Sticks 16 oz,0,38166.0,68584.0,1.8,2.01,0.474
+Bag Snacks,Snyder's,(all),1,127020.0,345600.0,2.72,2.95,0.465
+Bag Snacks,Snyder's,Snydr Ff Mini Pretzels 16 oz,0,47394.0,135829.0,2.87,3.12,0.52
+Bag Snacks,Snyder's,Snydr Pretzel Rods 10 oz,0,33889.0,79181.0,2.34,2.5,0.282
+Bag Snacks,Snyder's,Snydr Sourdough Nibblers 16 oz,0,45737.0,130590.0,2.86,3.1,0.52
+Cold Cereal,(all),(all),3,1881876.0,5040418.0,2.68,2.99,0.332
+Cold Cereal,General Mills,(all),1,573089.0,1707538.0,2.98,3.31,0.367
+Cold Cereal,General Mills,Gm Cheerios 12 oz,0,190177.0,517012.0,2.72,3.11,0.513
+Cold Cereal,General Mills,Gm Cheerios 18 oz,0,117822.0,482805.0,4.1,4.6,0.23
+Cold Cereal,General Mills,Gm Honey Nut Cheerios 12.25 oz,0,265090.0,707721.0,2.67,2.87,0.353
+Cold Cereal,Kellogg,(all),1,496046.0,1393659.0,2.81,3.29,0.385
+Cold Cereal,Kellogg,Kell Bite Size Mini Wheat 18 oz,0,131410.0,433807.0,3.3,3.51,0.193
+Cold Cereal,Kellogg,Kell Froot Loops 12.2 oz,0,173294.0,423946.0,2.45,3.25,0.613
+Cold Cereal,Kellogg,Kell Frosted Flakes 15 oz,0,191342.0,535906.0,2.8,3.18,0.36
+Cold Cereal,Post Foods,(all),1,296485.0,867267.0,2.93,3.09,0.19
+Cold Cereal,Post Foods,Post Fm Sz Hnybnch Ot Alm 18 oz,0,102917.0,314150.0,3.05,3.18,0.169
+Cold Cereal,Post Foods,Post Fruity Pebbles 11 oz,0,86082.0,224795.0,2.61,2.87,0.259
+Cold Cereal,Post Foods,Post Hny Bn Ots Hny Rstd 18 oz,0,107486.0,328322.0,3.05,3.17,0.163
+Cold Cereal,Private Label,(all),1,368736.0,722362.0,1.96,2.05,0.233
+Cold Cereal,Private Label,Pl Bt Sz Frstd Shrd Wht 18 oz,0,156100.0,339587.0,2.18,2.3,0.248
+Cold Cereal,Private Label,Pl Honey Nut Toastd Oats 12.25 oz,0,92987.0,168510.0,1.81,1.87,0.214
+Cold Cereal,Private Label,Pl Raisin Bran 20 oz,0,119649.0,214265.0,1.79,1.85,0.225
+Cold Cereal,Quaker,(all),1,147520.0,349593.0,2.37,2.93,0.504
+Cold Cereal,Quaker,Qker Cap N Crunch 14 oz,0,53229.0,123872.0,2.33,2.77,0.518
+Cold Cereal,Quaker,Qker Cap N Crunch Berries 13 oz,0,62256.0,149132.0,2.4,2.77,0.398
+Cold Cereal,Quaker,Qker Life Original 13 oz,0,32035.0,76589.0,2.39,3.53,0.691
+Frozen Pizza,(all),(all),3,471574.0,2318423.0,4.92,5.72,0.536
+Frozen Pizza,King,(all),1,48047.0,276633.0,5.76,6.2,0.216
+Frozen Pizza,King,Nwmn Own 4 Cheese Pizza 13.3 oz,0,16362.0,94506.0,5.78,6.16,0.201
+Frozen Pizza,King,Nwmn Own Pepperoni Pizza 13.2 oz,0,21340.0,122938.0,5.76,6.22,0.215
+Frozen Pizza,King,Nwmn Own Supreme Pizza 14.7 oz,0,10345.0,59190.0,5.72,6.23,0.245
+Frozen Pizza,Private Label,(all),1,145974.0,516134.0,3.54,3.91,0.404
+Frozen Pizza,Private Label,Pl Sr Crust 3 Meat Pizza 30.5 oz,0,45140.0,158495.0,3.51,3.85,0.397
+Frozen Pizza,Private Label,Pl Sr Crust Pepprn Pizza 29.6 oz,0,56317.0,201267.0,3.57,3.97,0.407
+Frozen Pizza,Private Label,Pl Sr Crust Suprm Pizza 32.7 oz,0,44517.0,156373.0,3.51,3.88,0.405
+Frozen Pizza,Tombstone,(all),1,221060.0,1195631.0,5.41,6.39,0.667
+Frozen Pizza,Tombstone,Digiorno Three Meat 29.8 oz,0,53866.0,289318.0,5.37,6.37,0.686
+Frozen Pizza,Tombstone,Digrn Pepp Pizza 28.3 oz,0,97670.0,530538.0,5.43,6.4,0.655
+Frozen Pizza,Tombstone,Digrn Supreme Pizza 32.7 oz,0,69524.0,375776.0,5.4,6.4,0.668
+Frozen Pizza,Tony's,(all),1,56493.0,330024.0,5.84,7.32,0.536
+Frozen Pizza,Tony's,Frsc 4 Cheese Pizza 26.11 oz,0,15704.0,93205.0,5.94,7.31,0.496
+Frozen Pizza,Tony's,Frsc Brck Ovn Itl Pep Pz 22.7 oz,0,21146.0,123746.0,5.85,7.33,0.537
+Frozen Pizza,Tony's,Frsc Pepperoni Pizza 27.35 oz,0,19643.0,113072.0,5.76,7.32,0.567
+Oral Hygiene Products,(all),(all),3,181972.0,612866.0,3.37,3.71,0.357
+Oral Hygiene Products,Chattem,(all),1,17415.0,78643.0,4.52,4.68,0.24
+Oral Hygiene Products,Chattem,Act Kids Bblgum Fluor Rns 532 ml,0,5872.0,25804.0,4.39,4.55,0.244
+Oral Hygiene Products,Chattem,Act Mint A/Cav Fluor Rns 532 ml,0,5685.0,24931.0,4.39,4.57,0.274
+Oral Hygiene Products,Chattem,Act Rstr Cl Splsh Mint Mw 532 ml,0,5858.0,27908.0,4.76,4.92,0.206
+Oral Hygiene Products,Colgate,(all),1,202.0,903.0,4.47,7.26,0.833
+Oral Hygiene Products,Colgate,Colg Spearmint Wisp 16 ct,0,202.0,903.0,4.47,7.26,0.833
+Oral Hygiene Products,P&G,(all),1,41912.0,164402.0,3.92,4.38,0.417
+Oral Hygiene Products,P&G,Crest Ph Cln Mint Rinse 1 lt,0,14679.0,70994.0,4.84,5.17,0.429
+Oral Hygiene Products,P&G,Crest Ph Whtg Cln Mint Tp 4.2 oz,0,11172.0,30972.0,2.77,3.5,0.599
+Oral Hygiene Products,P&G,Scope Orig Mint Mouthwash 1 lt,0,16061.0,62436.0,3.89,4.27,0.312
+Oral Hygiene Products,Private Label,(all),1,60948.0,100851.0,1.65,1.9,0.26
+Oral Hygiene Products,Private Label,Pl Antsptc Spg Mnt Mthws 500 ml,0,18695.0,23900.0,1.28,1.61,0.432
+Oral Hygiene Products,Private Label,Pl Bl Mint Antsptc Rinse 1.5 lt,0,13009.0,38848.0,2.99,2.99,0.025
+Oral Hygiene Products,Private Label,Pl Bl Mint Antsptc Rinse 500 ml,0,29244.0,38103.0,1.3,1.6,0.392
+Oral Hygiene Products,Warner,(all),1,61495.0,268067.0,4.36,4.76,0.388
+Oral Hygiene Products,Warner,Lstrne Cl Mint Antsptc Mw 1 lt,0,28319.0,128234.0,4.53,4.91,0.392
+Oral Hygiene Products,Warner,Lstrne Cl Mint Antsptc Mw 500 ml,0,14494.0,55714.0,3.84,4.27,0.343
+Oral Hygiene Products,Warner,Lstrne Frs Brst Antspc Mw 1 lt,0,18682.0,84119.0,4.5,4.91,0.413

@@ -1,0 +1,89 @@
+/// Promotion results by category and mechanic, margin sensitivity 20/30/40%
+table 'Promo Summary'
+
+	column category
+		dataType: string
+		summarizeBy: none
+		sourceColumn: category
+
+	column promo_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: promo_type
+
+	column promo_weeks
+		dataType: int64
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: promo_weeks
+
+	column avg_discount
+		dataType: double
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: avg_discount
+
+	column uplift
+		dataType: double
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: uplift
+
+	column incr_units
+		dataType: double
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: incr_units
+
+	column discount_cost
+		dataType: double
+		formatString: $#,0
+		summarizeBy: none
+		sourceColumn: discount_cost
+
+	column net_incr_profit
+		dataType: double
+		formatString: $#,0
+		summarizeBy: none
+		sourceColumn: net_incr_profit
+
+	column roi
+		dataType: double
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: roi
+
+	column margin_assumption
+		dataType: double
+		formatString: 0%
+		summarizeBy: none
+		sourceColumn: margin_assumption
+
+	column dip
+		dataType: double
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: dip
+
+	column net_incr_profit_after_dip
+		dataType: double
+		formatString: $#,0
+		summarizeBy: none
+		sourceColumn: net_incr_profit_after_dip
+
+	column roi_after_dip
+		dataType: double
+		formatString: 0.0%
+		summarizeBy: none
+		sourceColumn: roi_after_dip
+
+	partition 'Promo Summary' = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "output\promo_summary.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Kept = Table.SelectColumns(Promoted, {"category", "promo_type", "promo_weeks", "avg_discount", "uplift", "incr_units", "discount_cost", "net_incr_profit", "roi", "margin_assumption", "dip", "net_incr_profit_after_dip", "roi_after_dip"}, MissingField.UseNull),
+			    Typed = Table.TransformColumnTypes(Kept, {{"category", type text}, {"promo_type", type text}, {"promo_weeks", Int64.Type}, {"avg_discount", type number}, {"uplift", type number}, {"incr_units", type number}, {"discount_cost", type number}, {"net_incr_profit", type number}, {"roi", type number}, {"margin_assumption", type number}, {"dip", type number}, {"net_incr_profit_after_dip", type number}, {"roi_after_dip", type number}}, "en-US")
+			in
+			    Typed

@@ -1,0 +1,13 @@
+check_name,rows_hit,note
+Rows in weekly sales,524950.0,
+Missing or non-positive price,209.0,excluded from models
+Price above base price (+5%),2066.0,excluded from models
+Extreme price (> 3x or < 1/3 product median),52.0,excluded from models
+Zero or negative units,5.0,excluded from models
+Duplicate week x store x product rows,0.0,must be 0
+Stores listed twice in store lookup,2.0,conflicting segment: first record kept
+Store not in store lookup,0.0,excluded from market views
+Store x product pairs with missing weeks,2684.0,possible out-of-stock / delisting
+Products phasing out (last 13 weeks < 25% of normal),4.0,"kept in history, not simulated"
+Stores selling fewer than 52 weeks,0.0,thin history
+Rows passing every check,522624.0,used by models

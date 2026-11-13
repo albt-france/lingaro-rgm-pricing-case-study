@@ -1,0 +1,50 @@
+table Date
+	dataCategory: Time
+
+	column 'Week End Date'
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		summarizeBy: none
+		sourceColumn: Week End Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Year
+
+	column Quarter
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Quarter
+
+	column Month
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Month
+		sortByColumn: MonthKey
+
+	column MonthKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: MonthKey
+
+	partition Date = m
+		mode: import
+		source =
+			let
+			    Weeks = List.Distinct(Sales[week_end_date]),
+			    First = List.Min(Weeks),
+			    Last = List.Max(Weeks),
+			    Dates = List.Dates(First, Number.RoundDown(Duration.Days(Last - First) / 7) + 1, #duration(7, 0, 0, 0)),
+			    T = Table.FromList(Dates, Splitter.SplitByNothing(), type table [Week End Date = date]),
+			    Y = Table.AddColumn(T, "Year", each Date.Year([Week End Date]), Int64.Type),
+			    Q = Table.AddColumn(Y, "Quarter", each Text.From([Year]) & "-Q" & Text.From(Date.QuarterOfYear([Week End Date])), type text),
+			    M = Table.AddColumn(Q, "Month", each Date.ToText([Week End Date], "MMM yyyy", "en-US"), type text),
+			    K = Table.AddColumn(M, "MonthKey", each [Year] * 100 + Date.Month([Week End Date]), Int64.Type)
+			in
+			    K

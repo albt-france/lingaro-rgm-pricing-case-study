@@ -1,0 +1,35 @@
+relationship rel_01
+	fromColumn: Sales.upc
+	toColumn: Product.upc
+
+relationship rel_02
+	fromColumn: Sales.store_id
+	toColumn: Store.store_id
+
+relationship rel_03
+	fromColumn: Sales.week_end_date
+	toColumn: Date.'Week End Date'
+
+relationship rel_04
+	fromColumn: Sales.promo_type
+	toColumn: 'Promo Type'.promo_type
+
+relationship rel_05
+	fromColumn: Product.brand_key
+	toColumn: Brand.brand_key
+
+relationship rel_06
+	fromColumn: 'Promo Effectiveness'.brand_key
+	toColumn: Brand.brand_key
+
+relationship rel_07
+	fromColumn: 'Promo Effectiveness'.promo_type
+	toColumn: 'Promo Type'.promo_type
+
+relationship rel_08
+	fromColumn: 'Market Sim'.brand_key
+	toColumn: Brand.brand_key
+
+relationship rel_09
+	fromColumn: 'Scenario Grid'.segment_id
+	toColumn: Elasticity.segment_id

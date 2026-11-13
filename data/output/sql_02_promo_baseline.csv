@@ -1,0 +1,68 @@
+category,manufacturer,promo_type,promo_weeks,avg_discount,uplift,incremental_units
+Bag Snacks,Frito Lay,Display,1046,0.087,0.61,6985.0
+Bag Snacks,Frito Lay,Feature,660,0.268,0.966,6023.0
+Bag Snacks,Frito Lay,Feature + Display,639,0.28,1.785,13600.0
+Bag Snacks,Frito Lay,TPR only,807,0.171,0.418,3032.0
+Bag Snacks,Mksl,Display,118,0.034,0.586,436.0
+Bag Snacks,Mksl,TPR only,1800,0.17,0.208,1853.0
+Bag Snacks,Private Label,Display,1959,0.036,0.306,25108.0
+Bag Snacks,Private Label,Feature,538,0.129,0.515,7095.0
+Bag Snacks,Private Label,Feature + Display,236,0.147,1.191,8985.0
+Bag Snacks,Private Label,TPR only,2588,0.183,0.098,6740.0
+Bag Snacks,Shultz,Display,9,0.068,0.122,58.0
+Bag Snacks,Shultz,TPR only,1437,0.201,-0.017,-724.0
+Bag Snacks,Snyder's,Display,2391,0.139,1.02,30075.0
+Bag Snacks,Snyder's,Feature,208,0.155,0.878,1300.0
+Bag Snacks,Snyder's,Feature + Display,199,0.16,1.44,2319.0
+Bag Snacks,Snyder's,TPR only,4934,0.182,0.477,19818.0
+Cold Cereal,General Mills,Display,577,0.272,1.884,36581.0
+Cold Cereal,General Mills,Feature,808,0.26,2.19,71926.0
+Cold Cereal,General Mills,Feature + Display,1890,0.293,3.406,225610.0
+Cold Cereal,General Mills,TPR only,3249,0.217,0.118,15069.0
+Cold Cereal,Kellogg,Display,1157,0.179,1.967,58351.0
+Cold Cereal,Kellogg,Feature,1911,0.213,2.161,104634.0
+Cold Cereal,Kellogg,Feature + Display,2632,0.269,4.375,277855.0
+Cold Cereal,Kellogg,TPR only,1873,0.197,0.503,23498.0
+Cold Cereal,Post Foods,Display,463,0.205,1.87,18282.0
+Cold Cereal,Post Foods,Feature,739,0.215,1.658,25058.0
+Cold Cereal,Post Foods,Feature + Display,1264,0.244,3.065,84500.0
+Cold Cereal,Post Foods,TPR only,1584,0.175,0.48,15742.0
+Cold Cereal,Private Label,Display,586,0.11,0.46,10714.0
+Cold Cereal,Private Label,Feature,1100,0.085,0.418,10954.0
+Cold Cereal,Private Label,Feature + Display,297,0.124,0.787,8776.0
+Cold Cereal,Private Label,TPR only,6181,0.14,0.281,52667.0
+Cold Cereal,Quaker,Display,1490,0.191,2.219,48588.0
+Cold Cereal,Quaker,Feature,1411,0.256,3.257,68192.0
+Cold Cereal,Quaker,Feature + Display,2275,0.243,3.55,121942.0
+Cold Cereal,Quaker,TPR only,1828,0.248,1.072,26674.0
+Frozen Pizza,King,Display,304,0.278,2.133,3631.0
+Frozen Pizza,King,Feature,71,0.304,1.204,413.0
+Frozen Pizza,King,Feature + Display,67,0.306,1.558,732.0
+Frozen Pizza,King,TPR only,705,0.223,0.913,3534.0
+Frozen Pizza,Private Label,Display,1636,0.145,1.714,29858.0
+Frozen Pizza,Private Label,Feature,1290,0.123,1.036,13491.0
+Frozen Pizza,Private Label,Feature + Display,978,0.154,2.005,21916.0
+Frozen Pizza,Private Label,TPR only,2783,0.192,0.507,12624.0
+Frozen Pizza,Tombstone,Display,1078,0.191,1.71,16959.0
+Frozen Pizza,Tombstone,Feature,2915,0.191,1.547,40988.0
+Frozen Pizza,Tombstone,Feature + Display,3949,0.225,2.7,103588.0
+Frozen Pizza,Tombstone,TPR only,683,0.26,1.247,7960.0
+Frozen Pizza,Tony's,Display,753,0.19,2.968,9531.0
+Frozen Pizza,Tony's,Feature,2018,0.311,3.572,25595.0
+Frozen Pizza,Tony's,Feature + Display,2488,0.316,5.049,49408.0
+Frozen Pizza,Tony's,TPR only,1673,0.185,0.976,5871.0
+Oral Hygiene Products,Chattem,Display,40,0.055,0.14,13.0
+Oral Hygiene Products,Chattem,TPR only,2701,0.151,0.275,1592.0
+Oral Hygiene Products,Colgate,TPR only,23,0.121,0.252,8.0
+Oral Hygiene Products,P&G,Display,1336,0.112,0.398,2242.0
+Oral Hygiene Products,P&G,Feature,1318,0.236,1.116,4620.0
+Oral Hygiene Products,P&G,Feature + Display,377,0.215,1.702,2108.0
+Oral Hygiene Products,P&G,TPR only,3601,0.213,0.493,6036.0
+Oral Hygiene Products,Private Label,Display,844,0.314,1.48,6493.0
+Oral Hygiene Products,Private Label,Feature,576,0.412,2.46,6478.0
+Oral Hygiene Products,Private Label,Feature + Display,220,0.404,4.045,4607.0
+Oral Hygiene Products,Private Label,TPR only,5386,0.358,0.566,13912.0
+Oral Hygiene Products,Warner,Display,2139,0.16,0.65,6126.0
+Oral Hygiene Products,Warner,Feature,1124,0.228,1.749,6846.0
+Oral Hygiene Products,Warner,Feature + Display,559,0.223,2.203,5044.0
+Oral Hygiene Products,Warner,TPR only,4433,0.218,0.605,10189.0

@@ -1,0 +1,3 @@
+expression DataFolder = "C:\lingaro-case-study\data\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+
+	annotation PBI_ResultType = Text

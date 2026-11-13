@@ -1,0 +1,1513 @@
+createOrReplace
+
+	expression DataFolder = "C:\lingaro-case-study\data\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+
+	/// REAL RETAIL DATA - weekly sales by store and product (dunnhumby Breakfast at the Frat), with promo baseline
+	table Sales
+
+		column week_end_date
+			dataType: dateTime
+			summarizeBy: none
+			sourceColumn: week_end_date
+
+			annotation UnderlyingDateTimeDataType = Date
+
+		column store_id
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: store_id
+
+		column upc
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: upc
+
+		column units
+			dataType: int64
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: units
+
+		column spend
+			dataType: double
+			formatString: $#,0.00
+			summarizeBy: none
+			sourceColumn: spend
+
+		column price
+			dataType: double
+			formatString: $#,0.00
+			summarizeBy: none
+			sourceColumn: price
+
+		column base_price
+			dataType: double
+			formatString: $#,0.00
+			summarizeBy: none
+			sourceColumn: base_price
+
+		column discount_pct
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: discount_pct
+
+		column feature
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: feature
+
+		column display
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: display
+
+		column tpr_only
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: tpr_only
+
+		column promo_type
+			dataType: string
+			summarizeBy: none
+			sourceColumn: promo_type
+
+		column is_promo
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: is_promo
+
+		column dq_ok
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: dq_ok
+
+		column baseline_units
+			dataType: double
+			formatString: #,0.00
+			summarizeBy: none
+			sourceColumn: baseline_units
+
+		column baseline_n_weeks
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: baseline_n_weeks
+
+		column is_post_promo_week
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: is_post_promo_week
+
+		partition Sales = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "clean\sales_promo_weekly.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"week_end_date", "store_id", "upc", "units", "spend", "price", "base_price", "discount_pct", "feature", "display", "tpr_only", "promo_type", "is_promo", "dq_ok", "baseline_units", "baseline_n_weeks", "is_post_promo_week"}, MissingField.UseNull),
+				    Typed = Table.TransformColumnTypes(Kept, {{"week_end_date", type date}, {"store_id", Int64.Type}, {"upc", Int64.Type}, {"units", Int64.Type}, {"spend", type number}, {"price", type number}, {"base_price", type number}, {"discount_pct", type number}, {"feature", Int64.Type}, {"display", Int64.Type}, {"tpr_only", Int64.Type}, {"promo_type", type text}, {"is_promo", Int64.Type}, {"dq_ok", Int64.Type}, {"baseline_units", type number}, {"baseline_n_weeks", Int64.Type}, {"is_post_promo_week", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	/// Product hierarchy: category > manufacturer (brand) > product > pack size
+	table Product
+
+		column upc
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: upc
+
+		column product_name
+			dataType: string
+			summarizeBy: none
+			sourceColumn: product_name
+
+		column description
+			dataType: string
+			summarizeBy: none
+			sourceColumn: description
+
+		column manufacturer
+			dataType: string
+			summarizeBy: none
+			sourceColumn: manufacturer
+
+		column category
+			dataType: string
+			summarizeBy: none
+			sourceColumn: category
+
+		column sub_category
+			dataType: string
+			summarizeBy: none
+			sourceColumn: sub_category
+
+		column size
+			dataType: string
+			summarizeBy: none
+			sourceColumn: size
+
+		column size_oz
+			dataType: double
+			formatString: #,0.00
+			summarizeBy: none
+			sourceColumn: size_oz
+
+		column brand_key
+			dataType: string
+			summarizeBy: none
+			sourceColumn: brand_key
+
+		column is_private_label
+			dataType: boolean
+			summarizeBy: none
+			sourceColumn: is_private_label
+
+		column phase_out
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: phase_out
+
+		partition Product = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "clean\products.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"upc", "product_name", "description", "manufacturer", "category", "sub_category", "size", "size_oz", "brand_key", "is_private_label", "phase_out"}, MissingField.UseNull),
+				    Typed = Table.TransformColumnTypes(Kept, {{"upc", Int64.Type}, {"product_name", type text}, {"description", type text}, {"manufacturer", type text}, {"category", type text}, {"sub_category", type text}, {"size", type text}, {"size_oz", type number}, {"brand_key", type text}, {"is_private_label", type logical}, {"phase_out", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	/// Stores; state is used as the 'market' for the cross-market template
+	table Store
+
+		column store_id
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: store_id
+
+		column store_name
+			dataType: string
+			summarizeBy: none
+			sourceColumn: store_name
+
+		column city
+			dataType: string
+			summarizeBy: none
+			sourceColumn: city
+
+		column state
+			dataType: string
+			summarizeBy: none
+			sourceColumn: state
+
+		column segment
+			dataType: string
+			summarizeBy: none
+			sourceColumn: segment
+
+		column sales_area_sqft
+			dataType: double
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: sales_area_sqft
+
+		partition Store = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "clean\stores.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"store_id", "store_name", "city", "state", "segment", "sales_area_sqft"}, MissingField.UseNull),
+				    Typed = Table.TransformColumnTypes(Kept, {{"store_id", Int64.Type}, {"store_name", type text}, {"city", type text}, {"state", type text}, {"segment", type text}, {"sales_area_sqft", type number}}, "en-US")
+				in
+				    Typed
+
+	/// Log-log price elasticities with 95% intervals and publication status (business rule BR-06)
+	table Elasticity
+
+		column segment_id
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: segment_id
+
+		column level
+			dataType: string
+			summarizeBy: none
+			sourceColumn: level
+
+		column segment
+			dataType: string
+			summarizeBy: none
+			sourceColumn: segment
+
+		column category
+			dataType: string
+			summarizeBy: none
+			sourceColumn: category
+
+		column manufacturer
+			dataType: string
+			summarizeBy: none
+			sourceColumn: manufacturer
+
+		column market
+			dataType: string
+			summarizeBy: none
+			sourceColumn: market
+
+		column upc
+			dataType: double
+			summarizeBy: none
+			sourceColumn: upc
+
+		column n_obs
+			dataType: int64
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: n_obs
+
+		column n_stores
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: n_stores
+
+		column n_products
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: n_products
+
+		column n_weeks
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: n_weeks
+
+		column price_sd
+			dataType: double
+			formatString: 0.000
+			summarizeBy: none
+			sourceColumn: price_sd
+
+		column base_units_52w
+			dataType: double
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: base_units_52w
+
+		column base_revenue_52w
+			dataType: double
+			formatString: $#,0
+			summarizeBy: none
+			sourceColumn: base_revenue_52w
+
+		column avg_price_52w
+			dataType: double
+			formatString: $#,0.00
+			summarizeBy: none
+			sourceColumn: avg_price_52w
+
+		column elasticity
+			dataType: double
+			formatString: 0.00
+			summarizeBy: none
+			sourceColumn: elasticity
+
+		column se
+			dataType: double
+			formatString: 0.000
+			summarizeBy: none
+			sourceColumn: se
+
+		column ci_low
+			dataType: double
+			formatString: 0.00
+			summarizeBy: none
+			sourceColumn: ci_low
+
+		column ci_high
+			dataType: double
+			formatString: 0.00
+			summarizeBy: none
+			sourceColumn: ci_high
+
+		column p_value
+			dataType: double
+			formatString: 0.0000
+			summarizeBy: none
+			sourceColumn: p_value
+
+		column r2
+			dataType: double
+			formatString: 0.000
+			summarizeBy: none
+			sourceColumn: r2
+
+		column feature_effect
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: feature_effect
+
+		column display_effect
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: display_effect
+
+		column status
+			dataType: string
+			summarizeBy: none
+			sourceColumn: status
+
+		column status_reason
+			dataType: string
+			summarizeBy: none
+			sourceColumn: status_reason
+
+		column plain_english
+			dataType: string
+			summarizeBy: none
+			sourceColumn: plain_english
+
+		partition Elasticity = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "output\elasticity.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"segment_id", "level", "segment", "category", "manufacturer", "market", "upc", "n_obs", "n_stores", "n_products", "n_weeks", "price_sd", "base_units_52w", "base_revenue_52w", "avg_price_52w", "elasticity", "se", "ci_low", "ci_high", "p_value", "r2", "feature_effect", "display_effect", "status", "status_reason", "plain_english"}, MissingField.UseNull),
+				    Typed = Table.TransformColumnTypes(Kept, {{"segment_id", Int64.Type}, {"level", type text}, {"segment", type text}, {"category", type text}, {"manufacturer", type text}, {"market", type text}, {"upc", type number}, {"n_obs", Int64.Type}, {"n_stores", Int64.Type}, {"n_products", Int64.Type}, {"n_weeks", Int64.Type}, {"price_sd", type number}, {"base_units_52w", type number}, {"base_revenue_52w", type number}, {"avg_price_52w", type number}, {"elasticity", type number}, {"se", type number}, {"ci_low", type number}, {"ci_high", type number}, {"p_value", type number}, {"r2", type number}, {"feature_effect", type number}, {"display_effect", type number}, {"status", type text}, {"status_reason", type text}, {"plain_english", type text}}, "en-US")
+				in
+				    Typed
+
+	/// Regular-price vs promo-price-cut elasticity by category
+	table 'Elasticity Split'
+
+		column category
+			dataType: string
+			summarizeBy: none
+			sourceColumn: category
+
+		column component
+			dataType: string
+			summarizeBy: none
+			sourceColumn: component
+
+		column elasticity
+			dataType: double
+			formatString: 0.00
+			summarizeBy: none
+			sourceColumn: elasticity
+
+		column ci_low
+			dataType: double
+			formatString: 0.00
+			summarizeBy: none
+			sourceColumn: ci_low
+
+		column ci_high
+			dataType: double
+			formatString: 0.00
+			summarizeBy: none
+			sourceColumn: ci_high
+
+		column p_value
+			dataType: double
+			formatString: 0.0000
+			summarizeBy: none
+			sourceColumn: p_value
+
+		column n_obs
+			dataType: int64
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: n_obs
+
+		column status
+			dataType: string
+			summarizeBy: none
+			sourceColumn: status
+
+		column note
+			dataType: string
+			summarizeBy: none
+			sourceColumn: note
+
+		partition 'Elasticity Split' = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "output\elasticity_split.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"category", "component", "elasticity", "ci_low", "ci_high", "p_value", "n_obs", "status", "note"}, MissingField.UseNull),
+				    Typed = Table.TransformColumnTypes(Kept, {{"category", type text}, {"component", type text}, {"elasticity", type number}, {"ci_low", type number}, {"ci_high", type number}, {"p_value", type number}, {"n_obs", Int64.Type}, {"status", type text}, {"note", type text}}, "en-US")
+				in
+				    Typed
+
+	/// Brand units vs rest-of-category price
+	table 'Cross Elasticity'
+
+		column category
+			dataType: string
+			summarizeBy: none
+			sourceColumn: category
+
+		column manufacturer
+			dataType: string
+			summarizeBy: none
+			sourceColumn: manufacturer
+
+		column n_obs
+			dataType: int64
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: n_obs
+
+		column own_elasticity
+			dataType: double
+			formatString: 0.00
+			summarizeBy: none
+			sourceColumn: own_elasticity
+
+		column cross_elasticity
+			dataType: double
+			formatString: 0.00
+			summarizeBy: none
+			sourceColumn: cross_elasticity
+
+		column ci_low
+			dataType: double
+			formatString: 0.00
+			summarizeBy: none
+			sourceColumn: ci_low
+
+		column ci_high
+			dataType: double
+			formatString: 0.00
+			summarizeBy: none
+			sourceColumn: ci_high
+
+		column p_value
+			dataType: double
+			formatString: 0.0000
+			summarizeBy: none
+			sourceColumn: p_value
+
+		column reading
+			dataType: string
+			summarizeBy: none
+			sourceColumn: reading
+
+		partition 'Cross Elasticity' = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "output\cross_elasticity.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"category", "manufacturer", "n_obs", "own_elasticity", "cross_elasticity", "ci_low", "ci_high", "p_value", "reading"}, MissingField.UseNull),
+				    Typed = Table.TransformColumnTypes(Kept, {{"category", type text}, {"manufacturer", type text}, {"n_obs", Int64.Type}, {"own_elasticity", type number}, {"cross_elasticity", type number}, {"ci_low", type number}, {"ci_high", type number}, {"p_value", type number}, {"reading", type text}}, "en-US")
+				in
+				    Typed
+
+	/// Promotion results by brand and mechanic at the ASSUMED 30% margin
+	table 'Promo Effectiveness'
+
+		column brand_key
+			dataType: string
+			summarizeBy: none
+			sourceColumn: brand_key
+
+		column category
+			dataType: string
+			summarizeBy: none
+			sourceColumn: category
+
+		column manufacturer
+			dataType: string
+			summarizeBy: none
+			sourceColumn: manufacturer
+
+		column promo_type
+			dataType: string
+			summarizeBy: none
+			sourceColumn: promo_type
+
+		column promo_weeks
+			dataType: int64
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: promo_weeks
+
+		column units
+			dataType: double
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: units
+
+		column baseline_units
+			dataType: double
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: baseline_units
+
+		column avg_discount
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: avg_discount
+
+		column incr_units
+			dataType: double
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: incr_units
+
+		column incr_revenue
+			dataType: double
+			formatString: $#,0
+			summarizeBy: none
+			sourceColumn: incr_revenue
+
+		column discount_cost
+			dataType: double
+			formatString: $#,0
+			summarizeBy: none
+			sourceColumn: discount_cost
+
+		column net_incr_profit
+			dataType: double
+			formatString: $#,0
+			summarizeBy: none
+			sourceColumn: net_incr_profit
+
+		column paid_back_weeks
+			dataType: int64
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: paid_back_weeks
+
+		column uplift
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: uplift
+
+		column roi
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: roi
+
+		column share_weeks_paid_back
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: share_weeks_paid_back
+
+		partition 'Promo Effectiveness' = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "output\promo_effectiveness.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"brand_key", "category", "manufacturer", "promo_type", "promo_weeks", "units", "baseline_units", "avg_discount", "incr_units", "incr_revenue", "discount_cost", "net_incr_profit", "paid_back_weeks", "uplift", "roi", "share_weeks_paid_back"}, MissingField.UseNull),
+				    Typed = Table.TransformColumnTypes(Kept, {{"brand_key", type text}, {"category", type text}, {"manufacturer", type text}, {"promo_type", type text}, {"promo_weeks", Int64.Type}, {"units", type number}, {"baseline_units", type number}, {"avg_discount", type number}, {"incr_units", type number}, {"incr_revenue", type number}, {"discount_cost", type number}, {"net_incr_profit", type number}, {"paid_back_weeks", Int64.Type}, {"uplift", type number}, {"roi", type number}, {"share_weeks_paid_back", type number}}, "en-US")
+				in
+				    Typed
+
+	/// Promotion results by category and mechanic, margin sensitivity 20/30/40%
+	table 'Promo Summary'
+
+		column category
+			dataType: string
+			summarizeBy: none
+			sourceColumn: category
+
+		column promo_type
+			dataType: string
+			summarizeBy: none
+			sourceColumn: promo_type
+
+		column promo_weeks
+			dataType: int64
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: promo_weeks
+
+		column avg_discount
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: avg_discount
+
+		column uplift
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: uplift
+
+		column incr_units
+			dataType: double
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: incr_units
+
+		column discount_cost
+			dataType: double
+			formatString: $#,0
+			summarizeBy: none
+			sourceColumn: discount_cost
+
+		column net_incr_profit
+			dataType: double
+			formatString: $#,0
+			summarizeBy: none
+			sourceColumn: net_incr_profit
+
+		column roi
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: roi
+
+		column margin_assumption
+			dataType: double
+			formatString: 0%
+			summarizeBy: none
+			sourceColumn: margin_assumption
+
+		column dip
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: dip
+
+		column net_incr_profit_after_dip
+			dataType: double
+			formatString: $#,0
+			summarizeBy: none
+			sourceColumn: net_incr_profit_after_dip
+
+		column roi_after_dip
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: roi_after_dip
+
+		partition 'Promo Summary' = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "output\promo_summary.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"category", "promo_type", "promo_weeks", "avg_discount", "uplift", "incr_units", "discount_cost", "net_incr_profit", "roi", "margin_assumption", "dip", "net_incr_profit_after_dip", "roi_after_dip"}, MissingField.UseNull),
+				    Typed = Table.TransformColumnTypes(Kept, {{"category", type text}, {"promo_type", type text}, {"promo_weeks", Int64.Type}, {"avg_discount", type number}, {"uplift", type number}, {"incr_units", type number}, {"discount_cost", type number}, {"net_incr_profit", type number}, {"roi", type number}, {"margin_assumption", type number}, {"dip", type number}, {"net_incr_profit_after_dip", type number}, {"roi_after_dip", type number}}, "en-US")
+				in
+				    Typed
+
+	/// Post-promotion dip by category
+	table 'Promo Dip'
+
+		column category
+			dataType: string
+			summarizeBy: none
+			sourceColumn: category
+
+		column post_weeks
+			dataType: int64
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: post_weeks
+
+		column units
+			dataType: double
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: units
+
+		column baseline_units
+			dataType: double
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: baseline_units
+
+		column dip
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: dip
+
+		column dip_units
+			dataType: double
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: dip_units
+
+		partition 'Promo Dip' = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "output\promo_dip.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"category", "post_weeks", "units", "baseline_units", "dip", "dip_units"}, MissingField.UseNull),
+				    Typed = Table.TransformColumnTypes(Kept, {{"category", type text}, {"post_weeks", Int64.Type}, {"units", type number}, {"baseline_units", type number}, {"dip", type number}, {"dip_units", type number}}, "en-US")
+				in
+				    Typed
+
+	/// Non-promoted products when another product of the category is on promotion
+	table Cannibalisation
+
+		column category
+			dataType: string
+			summarizeBy: none
+			sourceColumn: category
+
+		column context
+			dataType: string
+			summarizeBy: none
+			sourceColumn: context
+
+		column weeks
+			dataType: int64
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: weeks
+
+		column units
+			dataType: double
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: units
+
+		column baseline_units
+			dataType: double
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: baseline_units
+
+		column vs_baseline
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: vs_baseline
+
+		partition Cannibalisation = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "output\cannibalisation.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"category", "context", "weeks", "units", "baseline_units", "vs_baseline"}, MissingField.UseNull),
+				    Typed = Table.TransformColumnTypes(Kept, {{"category", type text}, {"context", type text}, {"weeks", Int64.Type}, {"units", type number}, {"baseline_units", type number}, {"vs_baseline", type number}}, "en-US")
+				in
+				    Typed
+
+	/// Price-pack architecture: regular price per ounce by pack
+	table PPA
+
+		column category
+			dataType: string
+			summarizeBy: none
+			sourceColumn: category
+
+		column sub_category
+			dataType: string
+			summarizeBy: none
+			sourceColumn: sub_category
+
+		column manufacturer
+			dataType: string
+			summarizeBy: none
+			sourceColumn: manufacturer
+
+		column upc
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: upc
+
+		column description
+			dataType: string
+			summarizeBy: none
+			sourceColumn: description
+
+		column size
+			dataType: string
+			summarizeBy: none
+			sourceColumn: size
+
+		column size_oz
+			dataType: double
+			formatString: #,0.00
+			summarizeBy: none
+			sourceColumn: size_oz
+
+		column units
+			dataType: double
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: units
+
+		column avg_base_price
+			dataType: double
+			formatString: $#,0.00
+			summarizeBy: none
+			sourceColumn: avg_base_price
+
+		column base_price_per_oz
+			dataType: double
+			formatString: $0.000
+			summarizeBy: none
+			sourceColumn: base_price_per_oz
+
+		column elasticity
+			dataType: double
+			formatString: 0.00
+			summarizeBy: none
+			sourceColumn: elasticity
+
+		column price_index_per_oz
+			dataType: double
+			formatString: 0
+			summarizeBy: none
+			sourceColumn: price_index_per_oz
+
+		column inverted_vs
+			dataType: string
+			summarizeBy: none
+			sourceColumn: inverted_vs
+
+		column inversion_premium
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: inversion_premium
+
+		column opportunity
+			dataType: string
+			summarizeBy: none
+			sourceColumn: opportunity
+
+		partition PPA = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "output\ppa.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"category", "sub_category", "manufacturer", "upc", "description", "size", "size_oz", "units", "avg_base_price", "base_price_per_oz", "elasticity", "price_index_per_oz", "inverted_vs", "inversion_premium", "opportunity"}, MissingField.UseNull),
+				    Typed = Table.TransformColumnTypes(Kept, {{"category", type text}, {"sub_category", type text}, {"manufacturer", type text}, {"upc", Int64.Type}, {"description", type text}, {"size", type text}, {"size_oz", type number}, {"units", type number}, {"avg_base_price", type number}, {"base_price_per_oz", type number}, {"elasticity", type number}, {"price_index_per_oz", type number}, {"inverted_vs", type text}, {"inversion_premium", type number}, {"opportunity", type text}}, "en-US")
+				in
+				    Typed
+
+	/// Pre-computed scenarios -10%..+10% (oracle for the DAX simulator)
+	table 'Scenario Grid'
+
+		column segment_id
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: segment_id
+
+		column level
+			dataType: string
+			summarizeBy: none
+			sourceColumn: level
+
+		column segment
+			dataType: string
+			summarizeBy: none
+			sourceColumn: segment
+
+		column price_change
+			dataType: double
+			formatString: +0%;-0%;0%
+			summarizeBy: none
+			sourceColumn: price_change
+
+		column volume_pct
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: volume_pct
+
+		column volume_pct_low
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: volume_pct_low
+
+		column volume_pct_high
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: volume_pct_high
+
+		column revenue_pct
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: revenue_pct
+
+		column revenue_pct_low
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: revenue_pct_low
+
+		column revenue_pct_high
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: revenue_pct_high
+
+		column profit_pct
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: profit_pct
+
+		column profit_pct_low
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: profit_pct_low
+
+		column profit_pct_high
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: profit_pct_high
+
+		column revenue_delta
+			dataType: double
+			formatString: $#,0
+			summarizeBy: none
+			sourceColumn: revenue_delta
+
+		column profit_delta
+			dataType: double
+			formatString: $#,0
+			summarizeBy: none
+			sourceColumn: profit_delta
+
+		partition 'Scenario Grid' = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "output\scenario_grid.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"segment_id", "level", "segment", "price_change", "volume_pct", "volume_pct_low", "volume_pct_high", "revenue_pct", "revenue_pct_low", "revenue_pct_high", "profit_pct", "profit_pct_low", "profit_pct_high", "revenue_delta", "profit_delta"}, MissingField.UseNull),
+				    Typed = Table.TransformColumnTypes(Kept, {{"segment_id", Int64.Type}, {"level", type text}, {"segment", type text}, {"price_change", type number}, {"volume_pct", type number}, {"volume_pct_low", type number}, {"volume_pct_high", type number}, {"revenue_pct", type number}, {"revenue_pct_low", type number}, {"revenue_pct_high", type number}, {"profit_pct", type number}, {"profit_pct_low", type number}, {"profit_pct_high", type number}, {"revenue_delta", type number}, {"profit_delta", type number}}, "en-US")
+				in
+				    Typed
+
+	/// Pricing stance per published segment (business rule BR-11)
+	table 'Pricing Stance'
+
+		column segment_id
+			dataType: int64
+			summarizeBy: none
+			sourceColumn: segment_id
+
+		column level
+			dataType: string
+			summarizeBy: none
+			sourceColumn: level
+
+		column segment
+			dataType: string
+			summarizeBy: none
+			sourceColumn: segment
+
+		column elasticity
+			dataType: double
+			formatString: 0.00
+			summarizeBy: none
+			sourceColumn: elasticity
+
+		column ci_low
+			dataType: double
+			formatString: 0.00
+			summarizeBy: none
+			sourceColumn: ci_low
+
+		column ci_high
+			dataType: double
+			formatString: 0.00
+			summarizeBy: none
+			sourceColumn: ci_high
+
+		column stance
+			dataType: string
+			summarizeBy: none
+			sourceColumn: stance
+
+		partition 'Pricing Stance' = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "output\pricing_stance.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"segment_id", "level", "segment", "elasticity", "ci_low", "ci_high", "stance"}, MissingField.UseNull),
+				    Typed = Table.TransformColumnTypes(Kept, {{"segment_id", Int64.Type}, {"level", type text}, {"segment", type text}, {"elasticity", type number}, {"ci_low", type number}, {"ci_high", type number}, {"stance", type text}}, "en-US")
+				in
+				    Typed
+
+	/// SIMULATED NielsenIQ/Circana-style market data (seed 42) - not real
+	table 'Market Sim'
+
+		column brand_key
+			dataType: string
+			summarizeBy: none
+			sourceColumn: brand_key
+
+		column category
+			dataType: string
+			summarizeBy: none
+			sourceColumn: category
+
+		column manufacturer
+			dataType: string
+			summarizeBy: none
+			sourceColumn: manufacturer
+
+		column quarter
+			dataType: string
+			summarizeBy: none
+			sourceColumn: quarter
+
+		column market_value
+			dataType: double
+			formatString: $#,0
+			summarizeBy: none
+			sourceColumn: market_value
+
+		column market_value_share
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: market_value_share
+
+		column retailer_revenue
+			dataType: double
+			formatString: $#,0
+			summarizeBy: none
+			sourceColumn: retailer_revenue
+
+		column retailer_value_share
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: retailer_value_share
+
+		column retailer_price
+			dataType: double
+			formatString: $#,0.00
+			summarizeBy: none
+			sourceColumn: retailer_price
+
+		column competitor_avg_price
+			dataType: double
+			formatString: $#,0.00
+			summarizeBy: none
+			sourceColumn: competitor_avg_price
+
+		column price_index_vs_competitors
+			dataType: double
+			formatString: 0.0
+			summarizeBy: none
+			sourceColumn: price_index_vs_competitors
+
+		column numeric_distribution
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: numeric_distribution
+
+		column weighted_distribution
+			dataType: double
+			formatString: 0.0%
+			summarizeBy: none
+			sourceColumn: weighted_distribution
+
+		column data_label
+			dataType: string
+			summarizeBy: none
+			sourceColumn: data_label
+
+		partition 'Market Sim' = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "output\market_sim.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"brand_key", "category", "manufacturer", "quarter", "market_value", "market_value_share", "retailer_revenue", "retailer_value_share", "retailer_price", "competitor_avg_price", "price_index_vs_competitors", "numeric_distribution", "weighted_distribution", "data_label"}, MissingField.UseNull),
+				    Typed = Table.TransformColumnTypes(Kept, {{"brand_key", type text}, {"category", type text}, {"manufacturer", type text}, {"quarter", type text}, {"market_value", type number}, {"market_value_share", type number}, {"retailer_revenue", type number}, {"retailer_value_share", type number}, {"retailer_price", type number}, {"competitor_avg_price", type number}, {"price_index_vs_competitors", type number}, {"numeric_distribution", type number}, {"weighted_distribution", type number}, {"data_label", type text}}, "en-US")
+				in
+				    Typed
+
+	/// Data quality checks (business rule BR-07)
+	table 'Data Quality'
+
+		column check_name
+			dataType: string
+			summarizeBy: none
+			sourceColumn: check_name
+
+		column rows_hit
+			dataType: double
+			formatString: #,0
+			summarizeBy: none
+			sourceColumn: rows_hit
+
+		column note
+			dataType: string
+			summarizeBy: none
+			sourceColumn: note
+
+		partition 'Data Quality' = m
+			mode: import
+			source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "output\sql_05_data_quality.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Kept = Table.SelectColumns(Promoted, {"check_name", "rows_hit", "note"}, MissingField.UseNull),
+				    Typed = Table.TransformColumnTypes(Kept, {{"check_name", type text}, {"rows_hit", type number}, {"note", type text}}, "en-US")
+				in
+				    Typed
+
+	table Date
+		dataCategory: Time
+
+		column 'Week End Date'
+			dataType: dateTime
+			formatString: dd mmm yyyy
+			summarizeBy: none
+			sourceColumn: Week End Date
+
+			annotation UnderlyingDateTimeDataType = Date
+
+		column Year
+			dataType: int64
+			formatString: 0
+			summarizeBy: none
+			sourceColumn: Year
+
+		column Quarter
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Quarter
+
+		column Month
+			dataType: string
+			summarizeBy: none
+			sourceColumn: Month
+			sortByColumn: MonthKey
+
+		column MonthKey
+			dataType: int64
+			isHidden
+			formatString: 0
+			summarizeBy: none
+			sourceColumn: MonthKey
+
+		partition Date = m
+			mode: import
+			source =
+				let
+				    Weeks = List.Distinct(Sales[week_end_date]),
+				    First = List.Min(Weeks),
+				    Last = List.Max(Weeks),
+				    Dates = List.Dates(First, Number.RoundDown(Duration.Days(Last - First) / 7) + 1, #duration(7, 0, 0, 0)),
+				    T = Table.FromList(Dates, Splitter.SplitByNothing(), type table [Week End Date = date]),
+				    Y = Table.AddColumn(T, "Year", each Date.Year([Week End Date]), Int64.Type),
+				    Q = Table.AddColumn(Y, "Quarter", each Text.From([Year]) & "-Q" & Text.From(Date.QuarterOfYear([Week End Date])), type text),
+				    M = Table.AddColumn(Q, "Month", each Date.ToText([Week End Date], "MMM yyyy", "en-US"), type text),
+				    K = Table.AddColumn(M, "MonthKey", each [Year] * 100 + Date.Month([Week End Date]), Int64.Type)
+				in
+				    K
+
+	table Brand
+
+		column brand_key
+			dataType: string
+			summarizeBy: none
+			sourceColumn: brand_key
+
+		column category
+			dataType: string
+			summarizeBy: none
+			sourceColumn: category
+
+		column manufacturer
+			dataType: string
+			summarizeBy: none
+			sourceColumn: manufacturer
+
+		partition Brand = m
+			mode: import
+			source =
+				let
+				    Source = Table.SelectColumns(Product, {"brand_key", "category", "manufacturer"}),
+				    Distinct = Table.Distinct(Source)
+				in
+				    Distinct
+
+	table 'Promo Type'
+
+		column promo_type
+			dataType: string
+			summarizeBy: none
+			sourceColumn: promo_type
+			sortByColumn: sort_order
+
+		column sort_order
+			dataType: int64
+			isHidden
+			formatString: 0
+			summarizeBy: none
+			sourceColumn: sort_order
+
+		partition 'Promo Type' = m
+			mode: import
+			source =
+				#table(type table [promo_type = text, sort_order = Int64.Type],
+				    {{"No promo", 0}, {"TPR only", 1}, {"Display", 2}, {"Feature", 3}, {"Feature + Display", 4}})
+
+	table 'Price Change'
+
+		column 'Price Change'
+			dataType: double
+			formatString: +0%;-0%;0%
+			summarizeBy: none
+			sourceColumn: Price Change
+
+		partition 'Price Change' = m
+			mode: import
+			source =
+				#table(type table [Price Change = number], List.Transform({-10..10}, each {_ / 100}))
+
+	table 'Margin Assumption'
+
+		column Margin
+			dataType: double
+			formatString: 0%
+			summarizeBy: none
+			sourceColumn: Margin
+
+		partition 'Margin Assumption' = m
+			mode: import
+			source =
+				#table(type table [Margin = number], List.Transform({4..9}, each {_ * 5 / 100}))
+
+	/// All DAX measures, grouped in display folders
+	table _Measures
+
+		measure Revenue = SUM ( Sales[spend] )
+			formatString: $#,0
+			displayFolder: 1 Sales
+
+		measure Units = SUM ( Sales[units] )
+			formatString: #,0
+			displayFolder: 1 Sales
+
+		measure 'Avg Price' = DIVIDE ( [Revenue], [Units] )
+			formatString: $#,0.00
+			displayFolder: 1 Sales
+
+		measure 'Avg Base Price' = DIVIDE ( SUMX ( Sales, Sales[base_price] * Sales[units] ), [Units] )
+			formatString: $#,0.00
+			displayFolder: 1 Sales
+
+		measure 'Avg Base Price per Oz' = DIVIDE ( SUMX ( Sales, Sales[base_price] * Sales[units] ), SUMX ( Sales, RELATED ( Product[size_oz] ) * Sales[units] ) )
+			formatString: $0.000
+			displayFolder: 1 Sales
+
+		measure 'Promo Revenue Share' = DIVIDE ( CALCULATE ( [Revenue], Sales[is_promo] = 1 ), [Revenue] )
+			formatString: 0.0%
+			displayFolder: 1 Sales
+
+		measure 'Avg Discount Depth' = CALCULATE ( AVERAGE ( Sales[discount_pct] ), Sales[is_promo] = 1, Sales[discount_pct] > 0 )
+			formatString: 0.0%
+			displayFolder: 1 Sales
+
+		measure 'Revenue L52W' = VAR LastWeek = CALCULATE ( MAX ( Sales[week_end_date] ), REMOVEFILTERS () ) RETURN CALCULATE ( [Revenue], 'Date'[Week End Date] > LastWeek - 364 )
+			formatString: $#,0
+			displayFolder: 1 Sales
+
+		measure 'Revenue P52W' = VAR LastWeek = CALCULATE ( MAX ( Sales[week_end_date] ), REMOVEFILTERS () ) RETURN CALCULATE ( [Revenue], 'Date'[Week End Date] > LastWeek - 728, 'Date'[Week End Date] <= LastWeek - 364 )
+			formatString: $#,0
+			displayFolder: 1 Sales
+
+		measure 'Revenue YoY %' = DIVIDE ( [Revenue L52W], [Revenue P52W] ) - 1
+			formatString: 0.0%
+			displayFolder: 1 Sales
+
+		measure 'Promo Weeks' = CALCULATE ( COUNTROWS ( Sales ), Sales[is_promo] = 1, Sales[baseline_n_weeks] >= 4, Sales[dq_ok] = 1, Sales[baseline_units] > 0 )
+			formatString: #,0
+			displayFolder: 2 Promotions
+
+		measure 'Promo Units' = CALCULATE ( SUM ( Sales[units] ), Sales[is_promo] = 1, Sales[baseline_n_weeks] >= 4, Sales[dq_ok] = 1, Sales[baseline_units] > 0 )
+			formatString: #,0
+			displayFolder: 2 Promotions
+
+		measure 'Promo Baseline Units' = CALCULATE ( SUM ( Sales[baseline_units] ), Sales[is_promo] = 1, Sales[baseline_n_weeks] >= 4, Sales[dq_ok] = 1, Sales[baseline_units] > 0 )
+			formatString: #,0
+			displayFolder: 2 Promotions
+
+		measure 'Incremental Units' = [Promo Units] - [Promo Baseline Units]
+			formatString: #,0
+			displayFolder: 2 Promotions
+
+		measure 'Promo Uplift %' = DIVIDE ( [Promo Units], [Promo Baseline Units] ) - 1
+			formatString: 0.0%
+			displayFolder: 2 Promotions
+
+		measure 'Discount Cost' = CALCULATE ( SUMX ( Sales, MAX ( Sales[base_price] - Sales[price], 0 ) * Sales[units] ), Sales[is_promo] = 1, Sales[baseline_n_weeks] >= 4, Sales[dq_ok] = 1, Sales[baseline_units] > 0 )
+			formatString: $#,0
+			displayFolder: 2 Promotions
+
+		measure 'Net Incremental Profit' = VAR m = [Margin Value] RETURN CALCULATE ( SUMX ( Sales, Sales[units] * ( Sales[price] - Sales[base_price] * ( 1 - m ) ) - Sales[baseline_units] * Sales[base_price] * m ), Sales[is_promo] = 1, Sales[baseline_n_weeks] >= 4, Sales[dq_ok] = 1, Sales[baseline_units] > 0 )
+			formatString: $#,0
+			displayFolder: 2 Promotions
+
+		measure 'Promo ROI' = DIVIDE ( [Net Incremental Profit], [Discount Cost] )
+			formatString: 0.0%
+			displayFolder: 2 Promotions
+
+		measure 'Post-Promo Dip %' = DIVIDE ( CALCULATE ( SUM ( Sales[units] ), Sales[is_post_promo_week] = 1, Sales[baseline_n_weeks] >= 4, Sales[baseline_units] > 0 ), CALCULATE ( SUM ( Sales[baseline_units] ), Sales[is_post_promo_week] = 1, Sales[baseline_n_weeks] >= 4, Sales[baseline_units] > 0 ) ) - 1
+			formatString: 0.0%
+			displayFolder: 2 Promotions
+
+		measure 'Published Elasticities' = CALCULATE ( COUNTROWS ( Elasticity ), Elasticity[status] = "Published", Elasticity[level] IN { "Category", "Brand", "Product" } )
+			formatString: #,0
+			displayFolder: 3 Elasticity
+
+		measure 'Avg Elasticity' = AVERAGE ( Elasticity[elasticity] )
+			formatString: 0.00
+			displayFolder: 3 Elasticity
+
+		measure Segments = COUNTROWS ( Elasticity )
+			formatString: #,0
+			displayFolder: 3 Elasticity
+
+		measure 'Price Change Value' = SELECTEDVALUE ( 'Price Change'[Price Change], 0.05 )
+			formatString: +0%;-0%;0%
+			displayFolder: 4 Simulator
+
+		measure 'Margin Value' = SELECTEDVALUE ( 'Margin Assumption'[Margin], 0.3 )
+			formatString: 0%
+			displayFolder: 4 Simulator
+
+		measure 'Sim Elasticity' = IF ( HASONEVALUE ( Elasticity[segment_id] ) && SELECTEDVALUE ( Elasticity[status] ) = "Published", SELECTEDVALUE ( Elasticity[elasticity] ) )
+			formatString: 0.00
+			displayFolder: 4 Simulator
+
+		measure 'Sim Volume %' = VAR e = [Sim Elasticity] RETURN IF ( NOT ISBLANK ( e ), POWER ( 1 + [Price Change Value], e ) - 1 )
+			formatString: +0.0%;-0.0%;0.0%
+			displayFolder: 4 Simulator
+
+		measure 'Sim Volume % Low' = VAR p = [Price Change Value] RETURN IF ( NOT ISBLANK ( [Sim Elasticity] ), MIN ( POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_low] ) ), POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_high] ) ) ) - 1 )
+			formatString: +0.0%;-0.0%;0.0%
+			displayFolder: 4 Simulator
+
+		measure 'Sim Volume % High' = VAR p = [Price Change Value] RETURN IF ( NOT ISBLANK ( [Sim Elasticity] ), MAX ( POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_low] ) ), POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_high] ) ) ) - 1 )
+			formatString: +0.0%;-0.0%;0.0%
+			displayFolder: 4 Simulator
+
+		measure 'Sim Revenue %' = VAR e = [Sim Elasticity] RETURN IF ( NOT ISBLANK ( e ), POWER ( 1 + [Price Change Value], 1 + e ) - 1 )
+			formatString: +0.0%;-0.0%;0.0%
+			displayFolder: 4 Simulator
+
+		measure 'Sim Gross Profit %' = VAR e = [Sim Elasticity] VAR p = [Price Change Value] VAR m = [Margin Value] RETURN IF ( NOT ISBLANK ( e ), POWER ( 1 + p, e ) * ( m + p ) / m - 1 )
+			formatString: +0.0%;-0.0%;0.0%
+			displayFolder: 4 Simulator
+
+		measure 'Sim Gross Profit % Low' = VAR p = [Price Change Value] VAR m = [Margin Value] RETURN IF ( NOT ISBLANK ( [Sim Elasticity] ), MIN ( POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_low] ) ), POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_high] ) ) ) * ( m + p ) / m - 1 )
+			formatString: +0.0%;-0.0%;0.0%
+			displayFolder: 4 Simulator
+
+		measure 'Sim Gross Profit % High' = VAR p = [Price Change Value] VAR m = [Margin Value] RETURN IF ( NOT ISBLANK ( [Sim Elasticity] ), MAX ( POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_low] ) ), POWER ( 1 + p, SELECTEDVALUE ( Elasticity[ci_high] ) ) ) * ( m + p ) / m - 1 )
+			formatString: +0.0%;-0.0%;0.0%
+			displayFolder: 4 Simulator
+
+		measure 'Sim Revenue Change' = [Sim Revenue %] * SELECTEDVALUE ( Elasticity[base_revenue_52w] )
+			formatString: +$#,0;-$#,0;$0
+			displayFolder: 4 Simulator
+
+		measure 'Sim Gross Profit Change' = [Sim Gross Profit %] * SELECTEDVALUE ( Elasticity[base_revenue_52w] ) * [Margin Value]
+			formatString: +$#,0;-$#,0;$0
+			displayFolder: 4 Simulator
+
+		measure 'Sim Status' = IF ( ISBLANK ( [Sim Elasticity] ), "Select ONE segment with a published elasticity (BR-06)", "Published elasticity " & FORMAT ( [Sim Elasticity], "0.00" ) & " (95% CI " & FORMAT ( SELECTEDVALUE ( Elasticity[ci_low] ), "0.00" ) & " to " & FORMAT ( SELECTEDVALUE ( Elasticity[ci_high] ), "0.00" ) & "), price change capped at +/-10% (BR-10)" )
+			displayFolder: 4 Simulator
+
+		measure 'Market Value Share (SIM)' = DIVIDE ( SUM ( 'Market Sim'[market_value] ), CALCULATE ( SUM ( 'Market Sim'[market_value] ), REMOVEFILTERS ( Brand[manufacturer], Brand[brand_key], 'Market Sim'[manufacturer], 'Market Sim'[brand_key] ) ) )
+			formatString: 0.0%
+			displayFolder: 5 Market (SIMULATED)
+
+		measure 'Retailer Value Share' = DIVIDE ( SUM ( 'Market Sim'[retailer_revenue] ), CALCULATE ( SUM ( 'Market Sim'[retailer_revenue] ), REMOVEFILTERS ( Brand[manufacturer], Brand[brand_key], 'Market Sim'[manufacturer], 'Market Sim'[brand_key] ) ) )
+			formatString: 0.0%
+			displayFolder: 5 Market (SIMULATED)
+
+		measure 'Price Index vs Competitors (SIM)' = AVERAGE ( 'Market Sim'[price_index_vs_competitors] )
+			formatString: 0.0
+			displayFolder: 5 Market (SIMULATED)
+
+		measure 'Weighted Distribution (SIM)' = AVERAGE ( 'Market Sim'[weighted_distribution] )
+			formatString: 0.0%
+			displayFolder: 5 Market (SIMULATED)
+
+		measure 'Rows Passing Checks %' = DIVIDE ( CALCULATE ( COUNTROWS ( Sales ), Sales[dq_ok] = 1 ), COUNTROWS ( Sales ) )
+			formatString: 0.00%
+			displayFolder: 6 Data quality
+
+		measure 'Flagged Rows' = CALCULATE ( COUNTROWS ( Sales ), Sales[dq_ok] = 0 )
+			formatString: #,0
+			displayFolder: 6 Data quality
+
+		column '_'
+			dataType: string
+			isHidden
+			summarizeBy: none
+			sourceColumn: _
+
+		partition _Measures = m
+			mode: import
+			source =
+				#table(type table [_ = text], {})
+
+	relationship rel_01
+		fromColumn: Sales.upc
+		toColumn: Product.upc
+
+	relationship rel_02
+		fromColumn: Sales.store_id
+		toColumn: Store.store_id
+
+	relationship rel_03
+		fromColumn: Sales.week_end_date
+		toColumn: Date.'Week End Date'
+
+	relationship rel_04
+		fromColumn: Sales.promo_type
+		toColumn: 'Promo Type'.promo_type
+
+	relationship rel_05
+		fromColumn: Product.brand_key
+		toColumn: Brand.brand_key
+
+	relationship rel_06
+		fromColumn: 'Promo Effectiveness'.brand_key
+		toColumn: Brand.brand_key
+
+	relationship rel_07
+		fromColumn: 'Promo Effectiveness'.promo_type
+		toColumn: 'Promo Type'.promo_type
+
+	relationship rel_08
+		fromColumn: 'Market Sim'.brand_key
+		toColumn: Brand.brand_key
+
+	relationship rel_09
+		fromColumn: 'Scenario Grid'.segment_id
+		toColumn: Elasticity.segment_id

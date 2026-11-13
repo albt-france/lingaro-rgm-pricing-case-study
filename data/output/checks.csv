@@ -1,0 +1,26 @@
+test_id,check,result,detail
+T1.1,ROI example AC-03.2 = -28%,PASS,-0.2800
+T1.2,Simulator example AC-05.1,PASS,vol -0.0706 rev -0.0241 profit 0.0843
+T1.3,Simulator refuses +12% (BR-10),PASS,
+T1.4,"Size parsing: 1 LT = 33.81 fl oz, 12.25 OZ = 12.25",PASS,
+T1.5,Stance classes (BR-11),PASS,
+T1.6,Profit rises with price when |e| < 1/m,PASS,
+T2.1,Row count kept through SQL baseline,PASS,524950 vs 524950
+T2.2,Revenue total identical (clean CSV vs SQL output),PASS,
+T2.3,Hierarchy roll-up: categories add up to total (L52W),PASS,9524793.0 vs 9524793.0
+T2.4,DQ: rows passing checks = dq_ok rows,PASS,
+T2.5,No row with price<=0 or units<=0 marked OK,PASS,0
+T2.6,Baseline of non-promo weeks is close to actual units (no bias),PASS,+0.532%
+T3.1,Every published elasticity is negative,PASS,
+T3.2,Every published interval width <= 1.5,PASS,
+T3.3,"Every published segment has >= 1,000 rows and >= 52 weeks",PASS,
+T3.4,Point estimate inside its interval,PASS,
+T3.5,"Promo: brand table adds up to category table (net profit, 30%)",PASS,
+T3.6,Promo uplift: DAX logic on Sales rows = Python table,PASS,1.2605 vs 1.2605
+T3.7,Simulator: 0% price change gives 0 everywhere,PASS,
+T3.8,Simulator: ranges contain the central value,PASS,
+T3.9,Simulator only uses published segments,PASS,
+T3.10,SIM market shares add to 100% per category-quarter,PASS,
+T3.11,Every SIM row labelled SIMULATED,PASS,
+T3.12,PPA: units-weighted price index = 100 per sub-category,PASS,
+T4.1,findings.json readable and complete,PASS,

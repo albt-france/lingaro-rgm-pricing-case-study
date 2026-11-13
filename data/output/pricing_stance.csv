@@ -1,0 +1,73 @@
+segment_id,level,segment,elasticity,ci_low,ci_high,stance
+2,Category,Bag Snacks,-1.228,-1.308,-1.148,"Moderate: price up grows profit but loses volume, test first"
+3,Brand,Bag Snacks | Frito Lay,-1.516,-1.707,-1.325,"Moderate: price up grows profit but loses volume, test first"
+4,Brand,Bag Snacks | Mksl,-1.488,-1.734,-1.242,"Moderate: price up grows profit but loses volume, test first"
+5,Brand,Bag Snacks | Private Label,-0.608,-0.737,-0.478,Low sensitivity: price increase candidate
+6,Brand,Bag Snacks | Shultz,-0.31,-0.411,-0.209,Low sensitivity: price increase candidate
+7,Brand,Bag Snacks | Snyder's,-1.835,-1.969,-1.701,"Moderate: price up grows profit but loses volume, test first"
+12,Category,Cold Cereal,-1.608,-1.662,-1.554,"Moderate: price up grows profit but loses volume, test first"
+13,Brand,Cold Cereal | General Mills,-0.78,-0.82,-0.741,Low sensitivity: price increase candidate
+14,Brand,Cold Cereal | Kellogg,-2.02,-2.122,-1.917,"Moderate: price up grows profit but loses volume, test first"
+15,Brand,Cold Cereal | Post Foods,-1.893,-2.088,-1.699,"Moderate: price up grows profit but loses volume, test first"
+16,Brand,Cold Cereal | Private Label,-1.454,-1.544,-1.365,"Moderate: price up grows profit but loses volume, test first"
+22,Category,Frozen Pizza,-2.866,-3.013,-2.72,"Moderate: price up grows profit but loses volume, test first"
+23,Brand,Frozen Pizza | King,-3.018,-3.334,-2.702,"Moderate: price up grows profit but loses volume, test first"
+24,Brand,Frozen Pizza | Private Label,-2.614,-2.808,-2.421,"Moderate: price up grows profit but loses volume, test first"
+25,Brand,Frozen Pizza | Tombstone,-2.733,-2.877,-2.589,"Moderate: price up grows profit but loses volume, test first"
+26,Brand,Frozen Pizza | Tony's,-2.792,-3.052,-2.532,"Moderate: price up grows profit but loses volume, test first"
+31,Category,Oral Hygiene Products,-1.261,-1.317,-1.205,"Moderate: price up grows profit but loses volume, test first"
+32,Brand,Oral Hygiene Products | Chattem,-0.836,-1.029,-0.643,Low sensitivity (uncertain): test a price increase
+34,Brand,Oral Hygiene Products | P&G,-1.777,-1.873,-1.682,"Moderate: price up grows profit but loses volume, test first"
+35,Brand,Oral Hygiene Products | Private Label,-1.037,-1.098,-0.975,"Moderate: price up grows profit but loses volume, test first"
+36,Brand,Oral Hygiene Products | Warner,-2.034,-2.148,-1.92,"Moderate: price up grows profit but loses volume, test first"
+41,Product,Pl Mini Twist Pretzels 15 oz,-0.678,-0.852,-0.503,Low sensitivity: price increase candidate
+42,Product,Pl Pretzel Sticks 15 oz,-0.643,-0.789,-0.496,Low sensitivity: price increase candidate
+43,Product,Pl Twist Pretzels 15 oz,-0.509,-0.705,-0.313,Low sensitivity: price increase candidate
+44,Product,Pl Bl Mint Antsptc Rinse 1.5 lt,-0.679,-0.815,-0.543,Low sensitivity: price increase candidate
+45,Product,Pl Bl Mint Antsptc Rinse 500 ml,-1.029,-1.093,-0.965,"Moderate: price up grows profit but loses volume, test first"
+46,Product,Pl Antsptc Spg Mnt Mthws 500 ml,-1.137,-1.214,-1.061,"Moderate: price up grows profit but loses volume, test first"
+47,Product,Pl Honey Nut Toastd Oats 12.25 oz,-1.298,-1.48,-1.117,"Moderate: price up grows profit but loses volume, test first"
+48,Product,Pl Raisin Bran 20 oz,-1.0,-1.128,-0.872,"Moderate: price up grows profit but loses volume, test first"
+49,Product,Pl Bt Sz Frstd Shrd Wht 18 oz,-1.622,-1.726,-1.519,"Moderate: price up grows profit but loses volume, test first"
+50,Product,Pl Sr Crust Suprm Pizza 32.7 oz,-2.507,-2.741,-2.273,"Moderate: price up grows profit but loses volume, test first"
+51,Product,Pl Sr Crust 3 Meat Pizza 30.5 oz,-2.648,-2.893,-2.403,"Moderate: price up grows profit but loses volume, test first"
+52,Product,Pl Sr Crust Pepprn Pizza 29.6 oz,-2.699,-2.918,-2.48,"Moderate: price up grows profit but loses volume, test first"
+53,Product,Gm Honey Nut Cheerios 12.25 oz,-1.17,-1.264,-1.075,"Moderate: price up grows profit but loses volume, test first"
+54,Product,Gm Cheerios 18 oz,-1.924,-2.113,-1.735,"Moderate: price up grows profit but loses volume, test first"
+55,Product,Gm Cheerios 12 oz,-0.257,-0.3,-0.214,Low sensitivity: price increase candidate
+56,Product,Nwmn Own Pepperoni Pizza 13.2 oz,-3.001,-3.402,-2.601,"Moderate: price up grows profit but loses volume, test first"
+57,Product,Nwmn Own 4 Cheese Pizza 13.3 oz,-3.311,-3.74,-2.882,"Moderate: price up grows profit but loses volume, test first"
+58,Product,Nwmn Own Supreme Pizza 14.7 oz,-2.629,-3.006,-2.252,"Moderate: price up grows profit but loses volume, test first"
+59,Product,Rldgld Braided Honey Wht 10 oz,-1.246,-1.475,-1.017,"Moderate: price up grows profit but loses volume, test first"
+60,Product,Rldgld Tiny Twists Prtzl 16 oz,-1.632,-1.935,-1.33,"Moderate: price up grows profit but loses volume, test first"
+61,Product,Rldgld Pretzel Sticks 16 oz,-1.742,-1.989,-1.496,"Moderate: price up grows profit but loses volume, test first"
+66,Product,Crest Ph Whtg Cln Mint Tp 4.2 oz,-1.704,-1.827,-1.581,"Moderate: price up grows profit but loses volume, test first"
+67,Product,Scope Orig Mint Mouthwash 1 lt,-1.518,-1.687,-1.348,"Moderate: price up grows profit but loses volume, test first"
+68,Product,Crest Ph Cln Mint Rinse 1 lt,-1.284,-1.415,-1.152,"Moderate: price up grows profit but loses volume, test first"
+69,Product,Kell Bite Size Mini Wheat 18 oz,-1.232,-1.436,-1.028,"Moderate: price up grows profit but loses volume, test first"
+70,Product,Kell Frosted Flakes 15 oz,-1.767,-1.92,-1.615,"Moderate: price up grows profit but loses volume, test first"
+71,Product,Kell Froot Loops 12.2 oz,-3.043,-3.295,-2.792,"Moderate: price up grows profit but loses volume, test first"
+72,Product,Act Mint A/Cav Fluor Rns 532 ml,-0.917,-1.22,-0.614,Low sensitivity (uncertain): test a price increase
+73,Product,Act Kids Bblgum Fluor Rns 532 ml,-1.044,-1.325,-0.762,"Moderate: price up grows profit but loses volume, test first"
+74,Product,Act Rstr Cl Splsh Mint Mw 532 ml,-0.911,-1.165,-0.657,Low sensitivity (uncertain): test a price increase
+75,Product,Shurgd Pretzel Rods 12 oz,-0.407,-0.571,-0.243,Low sensitivity: price increase candidate
+76,Product,Shurgd Mini Pretzels 16 oz,-0.3,-0.451,-0.149,Low sensitivity: price increase candidate
+77,Product,Shurgd Pretzel Sticks 16 oz,-0.233,-0.379,-0.086,Low sensitivity: price increase candidate
+78,Product,Mksl Mini Twist Pretzels 16 oz,-1.753,-2.074,-1.433,"Moderate: price up grows profit but loses volume, test first"
+79,Product,Mksl Dutch Pretzels 16 oz,-1.15,-1.459,-0.841,"Moderate: price up grows profit but loses volume, test first"
+80,Product,Mksl Pretzel Sticks 16 oz,-1.561,-1.87,-1.252,"Moderate: price up grows profit but loses volume, test first"
+81,Product,Digiorno Three Meat 29.8 oz,-2.937,-3.104,-2.769,"Moderate: price up grows profit but loses volume, test first"
+82,Product,Digrn Supreme Pizza 32.7 oz,-2.696,-2.88,-2.511,"Moderate: price up grows profit but loses volume, test first"
+83,Product,Digrn Pepp Pizza 28.3 oz,-2.571,-2.715,-2.427,"Moderate: price up grows profit but loses volume, test first"
+84,Product,Frsc Brck Ovn Itl Pep Pz 22.7 oz,-2.703,-2.968,-2.437,"Moderate: price up grows profit but loses volume, test first"
+85,Product,Frsc Pepperoni Pizza 27.35 oz,-2.943,-3.249,-2.637,"Moderate: price up grows profit but loses volume, test first"
+86,Product,Frsc 4 Cheese Pizza 26.11 oz,-2.752,-3.056,-2.447,"Moderate: price up grows profit but loses volume, test first"
+87,Product,Snydr Pretzel Rods 10 oz,-1.603,-1.794,-1.412,"Moderate: price up grows profit but loses volume, test first"
+88,Product,Snydr Sourdough Nibblers 16 oz,-1.608,-1.787,-1.43,"Moderate: price up grows profit but loses volume, test first"
+89,Product,Snydr Ff Mini Pretzels 16 oz,-1.981,-2.151,-1.812,"Moderate: price up grows profit but loses volume, test first"
+90,Product,Lstrne Cl Mint Antsptc Mw 500 ml,-1.985,-2.149,-1.821,"Moderate: price up grows profit but loses volume, test first"
+91,Product,Lstrne Cl Mint Antsptc Mw 1 lt,-1.892,-2.038,-1.746,"Moderate: price up grows profit but loses volume, test first"
+92,Product,Lstrne Frs Brst Antspc Mw 1 lt,-1.992,-2.17,-1.815,"Moderate: price up grows profit but loses volume, test first"
+93,Product,Post Hny Bn Ots Hny Rstd 18 oz,-1.703,-2.04,-1.366,"Moderate: price up grows profit but loses volume, test first"
+94,Product,Post Fm Sz Hnybnch Ot Alm 18 oz,-1.722,-2.014,-1.43,"Moderate: price up grows profit but loses volume, test first"
+95,Product,Post Fruity Pebbles 11 oz,-2.15,-2.314,-1.987,"Moderate: price up grows profit but loses volume, test first"
