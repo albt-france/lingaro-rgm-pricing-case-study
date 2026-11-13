@@ -2,7 +2,8 @@
 
 A Revenue Growth Management pricing product (price elasticity, promotion effectiveness, price-pack architecture and a what-if simulator) prototyped on real retail data and packaged as a Power BI product: what I would deliver in Lingaro's RGM product team.
 
-**Read the report: [docs/Lingaro_RGM_CaseStudy.pdf](docs/Lingaro_RGM_CaseStudy.pdf)** (11 pages, landscape)
+**Read the report: [docs/Lingaro_RGM_CaseStudy.pdf](docs/Lingaro_RGM_CaseStudy.pdf)** (11 pages, landscape)  
+**Interactive dashboard: [albt-france.github.io/lingaro-rgm-pricing-case-study/dashboard.html](https://albt-france.github.io/lingaro-rgm-pricing-case-study/dashboard.html)** (simulator, elasticities, promotions, price-pack)
 
 ![Report overview](docs/img/report_overview.png)
 

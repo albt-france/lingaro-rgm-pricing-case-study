@@ -9,7 +9,7 @@ import subprocess
 import sys
 
 STEPS = ["prepare", "run_sql", "elasticity", "promo", "simulator", "ppa", "simulate_market", "findings",
-         "check_results", "build_tmdl", "build_measures_dictionary", "build_report_pages", "build_report",
+         "check_results", "build_tmdl", "build_measures_dictionary", "build_report_pages", "build_report", "build_dashboard",
          "build_notebooks"]
 
 if __name__ == "__main__":
